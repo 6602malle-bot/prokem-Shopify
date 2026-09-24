@@ -1,6 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": { "type": "main-collection", "settings": {} }
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_description": false,
+        "products_per_page": 24,
+        "columns": 3
+      }
+    },
+    "seo_text_WWBwxF": {
+      "type": "seo-text",
+      "name": "Text block",
+      "settings": {
+        "heading": "{{ collection.title }}",
+        "text": "{{ collection.description }}"
+      }
+    }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "seo_text_WWBwxF"
+  ]
 }
