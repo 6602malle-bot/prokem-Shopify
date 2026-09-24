@@ -24,10 +24,40 @@
         "heading": "{{ collection.title }}",
         "text": "{{ collection.description }}"
       }
+    },
+    "hero_slideshow_7gdii7": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_Lg3QBr": {
+          "type": "slide",
+          "settings": {
+            "image": "{{ collection.image }}",
+            "heading": "{{ collection.title }}",
+            "text": "dfghfghfghfgh",
+            "button_label": "",
+            "button_link": "",
+            "position": "bottom",
+            "align": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slide_Lg3QBr"
+      ],
+      "name": "Hero slideshow",
+      "settings": {
+        "label": "",
+        "height": "medium",
+        "overlay": 35,
+        "behind_header": false,
+        "autoplay": true,
+        "interval": 6
+      }
     }
   },
   "order": [
     "main",
-    "seo_text_WWBwxF"
+    "seo_text_WWBwxF",
+    "hero_slideshow_7gdii7"
   ]
 }
