@@ -9,22 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-collection",
-      "settings": {
-        "show_description": false,
-        "products_per_page": 24,
-        "columns": 3
-      }
-    },
-    "seo_text_WWBwxF": {
-      "type": "seo-text",
-      "name": "Text block",
-      "settings": {
-        "heading": "{{ collection.title }}",
-        "text": "{{ collection.description }}"
-      }
-    },
     "hero_slideshow_7gdii7": {
       "type": "hero-slideshow",
       "blocks": {
@@ -53,11 +37,27 @@
         "autoplay": true,
         "interval": 6
       }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_description": false,
+        "products_per_page": 24,
+        "columns": 3
+      }
+    },
+    "seo_text_WWBwxF": {
+      "type": "seo-text",
+      "name": "Text block",
+      "settings": {
+        "heading": "{{ collection.title }}",
+        "text": "{{ collection.description }}"
+      }
     }
   },
   "order": [
+    "hero_slideshow_7gdii7",
     "main",
-    "seo_text_WWBwxF",
-    "hero_slideshow_7gdii7"
+    "seo_text_WWBwxF"
   ]
 }
