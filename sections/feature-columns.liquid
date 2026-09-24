@@ -1,0 +1,57 @@
+<section class="section feature-columns">
+  <div class="page-width">
+    <div class="section__head">
+      {%- if section.settings.heading != blank -%}<h2 class="section__title">{{ section.settings.heading }}</h2>{%- endif -%}
+    </div>
+    {%- if section.settings.subheading != blank -%}<p class="feature-columns__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+    <div class="features__grid" style="--cols-d: {{ section.settings.columns }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <div {{ block.shopify_attributes }}>{% render block %}</div>
+        {%- else -%}
+          <div class="feature" {{ block.shopify_attributes }}>
+            <span class="feature__icon">{% render 'icon', name: block.settings.icon, size: 26 %}</span>
+            {%- if block.settings.title != blank -%}<h3 class="feature__title">{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p class="feature__text">{{ block.settings.text }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature columns",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Varför välja oss" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 4, "step": 1, "default": 3 }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "shield", "options": [
+          { "value": "truck", "label": "Truck" },
+          { "value": "clock", "label": "Clock" },
+          { "value": "star", "label": "Star" },
+          { "value": "tag", "label": "Tag" },
+          { "value": "leaf", "label": "Leaf" },
+          { "value": "shield", "label": "Shield" }
+        ]},
+        { "type": "text", "id": "title", "label": "Title", "default": "Kvalitetstestat" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Alla produkter utvecklas och testas av oss innan de når butikshyllan." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature columns",
+      "blocks": [{ "type": "feature" }, { "type": "feature" }, { "type": "feature" }]
+    }
+  ]
+}
+{% endschema %}

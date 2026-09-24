@@ -1,0 +1,51 @@
+<section class="section stats">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section__head"><h2 class="section__title">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+    <ul class="stats__list" style="--cols: {{ section.blocks.size | at_least: 1 }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <li {{ block.shopify_attributes }}>{% render block %}</li>
+        {%- else -%}
+          <li class="stats__item" {{ block.shopify_attributes }}>
+            <span class="stats__number">{{ block.settings.number }}</span>
+            <span class="stats__label">{{ block.settings.label }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stats",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "10+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "år i branschen" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "10+", "label": "år i branschen" } },
+        { "type": "stat", "settings": { "number": "50 000+", "label": "nöjda kunder" } },
+        { "type": "stat", "settings": { "number": "4,9/5", "label": "i kundbetyg" } },
+        { "type": "stat", "settings": { "number": "100%", "label": "testat på egna bilar" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{%- liquid
+  assign per_row = section.settings.per_row
+  assign coll = section.settings.collection
+-%}
+<section class="section carousel-section{% if section.settings.style == 'dark' %} section--dark{% endif %}" data-carousel style="--per: {{ per_row }}">
+  <div class="page-width">
+    <div class="section__head carousel__head">
+      <div class="carousel__titles">
+        {%- if section.settings.heading != blank -%}<h2 class="section__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.subheading != blank -%}<p class="carousel__sub">{{ section.settings.subheading }}</p>{%- endif -%}
+      </div>
+      <div class="carousel__controls">
+        {%- if section.settings.show_view_all and coll != blank -%}
+          <a class="link-arrow" href="{{ coll.url }}">{{ 'general.view_all' | t }}</a>
+        {%- endif -%}
+        <div class="carousel__nav">
+          <button type="button" class="carousel__btn" data-prev aria-label="{{ 'general.previous' | t }}">{% render 'icon', name: 'chevron-left', size: 20 %}</button>
+          <button type="button" class="carousel__btn" data-next aria-label="{{ 'general.next' | t }}">{% render 'icon', name: 'chevron-right', size: 20 %}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.heading | default: 'general.carousel_label' | t | escape }}">
+      <ul class="carousel__track" data-track>
+        {%- if coll != blank -%}
+          {%- for product in coll.products limit: section.settings.products_to_show -%}
+            <li class="carousel__item">
+              {% render 'product-card',
+                card_product: product,
+                quick_add: section.settings.show_quick_add,
+                show_rating: section.settings.show_rating,
+                discount_badge: section.settings.show_discount %}
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            <li class="carousel__item">
+              <article class="card">
+                <div class="card__media">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+                <div class="card__body"><h3 class="card__title">{{ 'products.example_title' | t }}</h3></div>
+              </article>
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product carousel",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bästsäljare" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Våra populäraste produkter just nu" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 24, "step": 1, "default": 10 },
+    { "type": "range", "id": "per_row", "label": "Products visible on desktop", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "select", "id": "style", "label": "Style", "default": "light", "options": [
+      { "value": "light", "label": "Light" },
+      { "value": "dark", "label": "Dark" }
+    ]},
+    { "type": "header", "content": "Product cards" },
+    { "type": "checkbox", "id": "show_quick_add", "label": "Show quick add (+ Add)", "info": "Products with variants open a variant picker with stock status.", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "info": "Reads the standard reviews.rating metafield (used by Judge.me and Shopify Product Reviews).", "default": true },
+    { "type": "checkbox", "id": "show_discount", "label": "Show discount as \"Save X%\"", "default": true },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show \"view all\" link", "default": true }
+  ],
+  "presets": [{ "name": "Product carousel" }]
+}
+{% endschema %}

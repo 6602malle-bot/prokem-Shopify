@@ -1,0 +1,19 @@
+<section class="section section--alt">
+  <div class="page-width">
+    <div class="seo rte">
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+      {{ section.settings.text }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text block",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bilvårdsprodukter för dig som bryr dig om resultatet" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Berätta om ditt varumärke här: vad som gör produkterna annorlunda, hur de testas och vilka som använder dem. Länka gärna till era viktigaste kategorier och produkter för att hjälpa både kunder och sökmotorer.</p>" }
+  ],
+  "presets": [{ "name": "Text block" }]
+}
+{% endschema %}

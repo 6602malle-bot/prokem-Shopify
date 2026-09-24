@@ -1,0 +1,93 @@
+{%- comment -%}
+  Params: card_product (required), quick_add (bool), show_rating (bool), discount_badge (bool)
+{%- endcomment -%}
+{%- liquid
+  assign product = card_product
+  assign on_sale = false
+  assign pct = 0
+  if product.compare_at_price > product.price and product.available
+    assign on_sale = true
+    assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price
+  endif
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count
+  assign first_variant = product.selected_or_first_available_variant
+-%}
+<article class="card"{% if quick_add %} data-card data-added-text="{{ 'products.added' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}"{% endif %}>
+  <a class="card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '240, 360, 480, 640', sizes: '(min-width: 990px) 22vw, 46vw', alt: product.featured_image.alt | default: product.title, class: 'card__img' }}
+      {%- if product.images[1] -%}
+        {{ product.images[1] | image_url: width: 640 | image_tag: loading: 'lazy', widths: '240, 360, 480, 640', sizes: '(min-width: 990px) 22vw, 46vw', alt: '', class: 'card__img card__img--hover' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+    <span class="card__badges">
+      {%- unless product.available -%}<span class="badge">{{ 'general.sold_out' | t }}</span>{%- endunless -%}
+      {%- if on_sale -%}
+        {%- if discount_badge and pct > 0 -%}
+          <span class="badge badge--sale">{{ 'general.save_percent' | t: pct: pct }}</span>
+        {%- else -%}
+          <span class="badge badge--sale">{{ 'general.sale' | t }}</span>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if product.tags contains 'nyhet' or product.tags contains 'new' -%}<span class="badge badge--accent">{{ 'general.new' | t }}</span>{%- endif -%}
+      {%- if product.tags contains 'restock' -%}<span class="badge badge--outline">{{ 'general.restock' | t }}</span>{%- endif -%}
+      {%- if product.tags contains 'bästsäljare' or product.tags contains 'bestseller' -%}<span class="badge badge--outline">{{ 'general.bestseller' | t }}</span>{%- endif -%}
+    </span>
+  </a>
+  <div class="card__body">
+    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {%- if show_rating and rating != blank -%}
+      <p class="card__rating" aria-label="{{ rating.rating }} / {{ rating.scale_max }}">
+        <span class="card__star" aria-hidden="true">★</span> {{ rating.rating | round: 1 }}{% if rating_count != blank %} <small>({{ rating_count }})</small>{% endif %}
+      </p>
+    {%- endif -%}
+    <div class="card__buy">
+      {% render 'price', product: product %}
+      {%- if quick_add and product.available -%}
+        {%- if product.has_only_default_variant -%}
+          <button type="button" class="card__add" data-quick-add data-variant-id="{{ first_variant.id }}">
+            <span aria-hidden="true">+</span> <span data-add-label>{{ 'products.quick_add' | t }}</span>
+          </button>
+        {%- else -%}
+          <button type="button" class="card__add" data-quick-open aria-expanded="false">
+            <span aria-hidden="true">+</span> <span>{{ 'products.quick_add' | t }}</span>
+          </button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if quick_add and product.available and product.has_only_default_variant == false -%}
+    <div class="card__variants" data-variants-panel hidden>
+      <div class="card__variants-head">
+        <p class="card__variants-title">{{ 'products.choose' | t: option: product.options.first }}</p>
+        <button type="button" class="icon-btn card__variants-close" data-quick-close aria-label="{{ 'products.close' | t }}">{% render 'icon', name: 'close', size: 18 %}</button>
+      </div>
+      <ul class="card__variants-list">
+        {%- for variant in product.variants limit: 30 -%}
+          {%- liquid
+            assign low = false
+            if variant.inventory_management == 'shopify' and variant.inventory_quantity > 0 and variant.inventory_quantity <= 5
+              assign low = true
+            endif
+          -%}
+          <li>
+            <button type="button" class="card__variant" data-quick-add data-variant-id="{{ variant.id }}"{% unless variant.available %} disabled{% endunless %}>
+              <span class="card__variant-name">{{ variant.title }}</span>
+              <small class="card__variant-status{% unless variant.available %} is-out{% endunless %}{% if low %} is-low{% endif %}">
+                {%- if variant.available -%}
+                  {%- if low -%}{{ 'general.low_stock' | t }}{%- else -%}{{ 'general.in_stock' | t }}{%- endif -%}
+                {%- else -%}
+                  {{ 'general.sold_out' | t }}
+                {%- endif -%}
+              </small>
+            </button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+</article>

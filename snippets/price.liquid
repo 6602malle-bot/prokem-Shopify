@@ -1,0 +1,11 @@
+{%- liquid
+  assign on_sale = false
+  if product.compare_at_price > product.price and product.available
+    assign on_sale = true
+  endif
+-%}
+<div class="price{% if on_sale %} price--sale{% endif %}">
+  {%- if product.price_varies -%}<span class="price__from">{{ 'general.from' | t }}</span>{%- endif -%}
+  <span class="price__current">{{ product.price | money }}</span>
+  {%- if on_sale -%}<s class="price__compare">{{ product.compare_at_price | money }}</s>{%- endif -%}
+</div>

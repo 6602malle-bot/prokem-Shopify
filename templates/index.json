@@ -1,0 +1,328 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "heading": "Hösttvättpaket – spara 10%",
+            "button_label": "Till paketen"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "heading": "Mångsidig allrengöring i flera dofter",
+            "button_label": "Läs mer"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "heading": "Skydda bilen. Snabbt och enkelt!",
+            "button_label": "Till produkten"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "height": "medium",
+        "autoplay": true,
+        "interval": 6,
+        "overlay": 35,
+        "label": "Kampanjer"
+      }
+    },
+    "categories": {
+      "type": "collection-tiles",
+      "blocks": {
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "title": "Alkalisk avfettning"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "title": "Exteriör"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "title": "Interiör"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "title": "Däck & fälg"
+          }
+        },
+        "t5": {
+          "type": "tile",
+          "settings": {
+            "title": "Polering"
+          }
+        },
+        "t6": {
+          "type": "tile",
+          "settings": {
+            "title": "Torkdukar"
+          }
+        },
+        "t7": {
+          "type": "tile",
+          "settings": {
+            "title": "Glas & rutor"
+          }
+        },
+        "t8": {
+          "type": "tile",
+          "settings": {
+            "title": "Tillbehör"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "settings": {
+        "heading": "Utvalda kategorier",
+        "style": "card",
+        "columns": 4,
+        "columns_mobile": 2
+      }
+    },
+    "popular": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Populära produkter",
+        "products_to_show": 4,
+        "columns": 4,
+        "show_view_all": true
+      }
+    },
+    "promos": {
+      "type": "promo-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "badge": "Nyhet!",
+            "title": "Storsäljande allrengöring – nu även i 5-liter",
+            "button_label": "Till produkten"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "badge": "Nyhet!",
+            "title": "Kombinerad kallavfettning och flygrostlösare",
+            "button_label": "Till produkten"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ],
+      "settings": {
+        "heading": "",
+        "columns": 2
+      }
+    },
+    "vehicles": {
+      "type": "collection-tiles",
+      "blocks": {
+        "v1": {
+          "type": "tile",
+          "settings": {
+            "title": "Bil"
+          }
+        },
+        "v2": {
+          "type": "tile",
+          "settings": {
+            "title": "Båt"
+          }
+        },
+        "v3": {
+          "type": "tile",
+          "settings": {
+            "title": "Motocross"
+          }
+        },
+        "v4": {
+          "type": "tile",
+          "settings": {
+            "title": "Motorcykel"
+          }
+        },
+        "v5": {
+          "type": "tile",
+          "settings": {
+            "title": "Cykel & MTB"
+          }
+        },
+        "v6": {
+          "type": "tile",
+          "settings": {
+            "title": "Lastbil & entreprenad"
+          }
+        },
+        "v7": {
+          "type": "tile",
+          "settings": {
+            "title": "Hem & hushåll"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5",
+        "v6",
+        "v7"
+      ],
+      "settings": {
+        "heading": "Handla efter fordonstyp",
+        "style": "round",
+        "columns": 7,
+        "columns_mobile": 2
+      }
+    },
+    "usps": {
+      "type": "usp-strip",
+      "blocks": {
+        "u1": {
+          "type": "usp",
+          "settings": {
+            "icon": "clock",
+            "text": "1–2 dagars leveranstid"
+          }
+        },
+        "u2": {
+          "type": "usp",
+          "settings": {
+            "icon": "truck",
+            "text": "Fraktfritt över 1 200 kr"
+          }
+        },
+        "u3": {
+          "type": "usp",
+          "settings": {
+            "icon": "star",
+            "text": "4,9/5 i kundomdömen"
+          }
+        },
+        "u4": {
+          "type": "usp",
+          "settings": {
+            "icon": "tag",
+            "text": "Dekaler ingår i varje order"
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {}
+    },
+    "spotlight": {
+      "type": "featured-product",
+      "settings": {
+        "tagline": "May the gloss be with you ®",
+        "button_label": "Köp nu"
+      }
+    },
+    "guides": {
+      "type": "guides",
+      "settings": {
+        "heading": "Guider",
+        "posts_to_show": 5,
+        "columns": 5
+      }
+    },
+    "promos_2": {
+      "type": "promo-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "badge": "",
+            "title": "Däckglans i sprayform",
+            "text": "Perfekt satinlook",
+            "button_label": "Kolla in"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "badge": "",
+            "title": "Nästa generations keramiska lackskydd",
+            "text": "Enkelt att applicera",
+            "button_label": "Till produkten"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ],
+      "settings": {
+        "heading": "",
+        "columns": 2
+      }
+    },
+    "about": {
+      "type": "seo-text",
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "Bästsäljare",
+        "subheading": "Våra populäraste produkter just nu",
+        "products_to_show": 10,
+        "per_row": 4,
+        "style": "light",
+        "show_quick_add": true,
+        "show_rating": true,
+        "show_discount": true,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "popular",
+    "promos",
+    "bestsellers",
+    "vehicles",
+    "usps",
+    "spotlight",
+    "guides",
+    "promos_2",
+    "about"
+  ]
+}

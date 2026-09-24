@@ -1,0 +1,118 @@
+{
+  "general": {
+    "skip_to_content": "Hoppa till innehåll",
+    "search": "Sök",
+    "cart": "Varukorg",
+    "account": "Mina sidor",
+    "menu": "Meny",
+    "close": "Stäng",
+    "main_navigation": "Huvudmeny",
+    "view_all": "Visa alla",
+    "view_all_in": "Visa allt i {{ title }}",
+    "sold_out": "Slutsåld",
+    "sale": "Rea",
+    "new": "Nyhet",
+    "from": "Från",
+    "previous": "Föregående",
+    "next": "Nästa",
+    "slide": "Gå till bild {{ n }}",
+    "restock": "Åter i lager",
+    "bestseller": "Bästsäljare",
+    "save_percent": "Spara {{ pct }}%",
+    "low_stock": "Få kvar",
+    "in_stock": "I lager",
+    "carousel_label": "Produktkarusell"
+  },
+  "products": {
+    "add_to_cart": "Lägg i varukorg",
+    "quantity": "Antal",
+    "increase": "Öka antal",
+    "decrease": "Minska antal",
+    "sku": "Artikelnr",
+    "tax_included": "Inklusive moms",
+    "show_image": "Visa bild {{ n }}",
+    "example_title": "Produktnamn",
+    "quick_add": "Lägg till",
+    "choose": "Välj {{ option }}",
+    "added": "Tillagd",
+    "error": "Något gick fel",
+    "close": "Stäng",
+    "adding": "Lägger till…",
+    "quantity_rule": "Köps i steg om {{ step }}, minst {{ min }} st",
+    "volume_pricing_title": "Mängdrabatt",
+    "volume_pricing_min": "{{ min }}+",
+    "each": "st"
+  },
+  "collection": {
+    "filters": "Filter",
+    "sort_by": "Sortera efter",
+    "products_count": {
+      "one": "{{ count }} produkt",
+      "other": "{{ count }} produkter"
+    },
+    "no_products": "Inga produkter hittades.",
+    "clear_all": "Rensa alla",
+    "apply": "Använd",
+    "price_from": "Från",
+    "price_to": "Till",
+    "all_collections": "Alla kategorier"
+  },
+  "cart": {
+    "title": "Varukorg",
+    "empty": "Din varukorg är tom.",
+    "continue": "Fortsätt handla",
+    "subtotal": "Delsumma",
+    "checkout": "Till kassan",
+    "update": "Uppdatera",
+    "remove": "Ta bort",
+    "shipping_note": "Frakt och eventuella avgifter beräknas i kassan.",
+    "order_note": "Meddelande till oss",
+    "free_shipping_left": "Handla för {{ amount }} till för fri frakt",
+    "free_shipping_reached": "Du har fri frakt!"
+  },
+  "search": {
+    "title": "Sök",
+    "placeholder": "Sök produkter och guider",
+    "results_count": {
+      "one": "{{ count }} resultat för \"{{ terms }}\"",
+      "other": "{{ count }} resultat för \"{{ terms }}\""
+    },
+    "no_results": "Inga resultat. Prova ett annat sökord."
+  },
+  "blog": {
+    "no_articles": "Inga inlägg ännu.",
+    "back": "Tillbaka till guiderna",
+    "example_title": "Guidens rubrik"
+  },
+  "not_found": {
+    "title": "Sidan kunde inte hittas",
+    "text": "Länken kan vara felaktig eller sidan har flyttats.",
+    "back": "Till startsidan"
+  },
+  "customer": {
+    "login": "Logga in",
+    "register": "Skapa konto",
+    "logout": "Logga ut",
+    "email": "E-post",
+    "password": "Lösenord",
+    "forgot": "Glömt lösenordet?",
+    "no_account": "Har du inget konto?",
+    "have_account": "Har du redan ett konto?",
+    "reset": "Återställ lösenord",
+    "reset_sent": "Vi har skickat instruktioner till din e-post.",
+    "back_to_login": "Tillbaka till inloggning",
+    "first_name": "Förnamn",
+    "last_name": "Efternamn",
+    "account_title": "Mina sidor",
+    "orders": "Mina ordrar",
+    "order": "Order",
+    "date": "Datum",
+    "payment": "Betalning",
+    "fulfillment": "Leverans",
+    "total": "Summa",
+    "no_orders": "Du har inga ordrar ännu."
+  },
+  "footer": {
+    "payment_methods": "Betalningsmetoder"
+  }
+}

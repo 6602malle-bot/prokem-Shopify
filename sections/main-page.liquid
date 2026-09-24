@@ -1,0 +1,11 @@
+<section class="page-width section page">
+  <h1 class="page__title">{{ page.title }}</h1>
+  <div class="rte page__content">{{ page.content }}</div>
+  {%- for block in section.blocks -%}
+    {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{ "name": "Page", "blocks": [{ "type": "@app" }] }
+{% endschema %}

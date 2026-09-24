@@ -1,0 +1,38 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section__head">
+      {%- if section.settings.heading != blank -%}<h2 class="section__title">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.collection != blank and section.settings.show_view_all -%}
+        <a class="link-arrow" href="{{ section.settings.collection.url }}">{{ 'general.view_all' | t }}</a>
+      {%- endif -%}
+    </div>
+    <div class="grid" style="--cols-d: {{ section.settings.columns }}; --cols-m: 2">
+      {%- if section.settings.collection != blank -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', card_product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <article class="card">
+            <div class="card__media">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+            <div class="card__body"><h3 class="card__title">{{ 'products.example_title' | t }}</h3></div>
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Populära produkter" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show \"view all\" link", "default": true }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}

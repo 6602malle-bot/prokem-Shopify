@@ -1,0 +1,118 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "menu": "Menu",
+    "close": "Close",
+    "main_navigation": "Main navigation",
+    "view_all": "View all",
+    "view_all_in": "View all in {{ title }}",
+    "sold_out": "Sold out",
+    "sale": "Sale",
+    "new": "New",
+    "from": "From",
+    "previous": "Previous",
+    "next": "Next",
+    "slide": "Go to slide {{ n }}",
+    "restock": "Back in stock",
+    "bestseller": "Bestseller",
+    "save_percent": "Save {{ pct }}%",
+    "low_stock": "Few left",
+    "in_stock": "In stock",
+    "carousel_label": "Product carousel"
+  },
+  "products": {
+    "add_to_cart": "Add to cart",
+    "quantity": "Quantity",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "sku": "SKU",
+    "tax_included": "Tax included",
+    "show_image": "Show image {{ n }}",
+    "example_title": "Product title",
+    "quick_add": "Add",
+    "choose": "Choose {{ option }}",
+    "added": "Added",
+    "error": "Something went wrong",
+    "close": "Close",
+    "adding": "Adding…",
+    "quantity_rule": "Sold in increments of {{ step }}, minimum {{ min }}",
+    "volume_pricing_title": "Volume pricing",
+    "volume_pricing_min": "{{ min }}+",
+    "each": "ea"
+  },
+  "collection": {
+    "filters": "Filters",
+    "sort_by": "Sort by",
+    "products_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "no_products": "No products found.",
+    "clear_all": "Clear all",
+    "apply": "Apply",
+    "price_from": "From",
+    "price_to": "To",
+    "all_collections": "All collections"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Check out",
+    "update": "Update",
+    "remove": "Remove",
+    "shipping_note": "Shipping and taxes are calculated at checkout.",
+    "order_note": "Order note",
+    "free_shipping_left": "Spend {{ amount }} more for free shipping",
+    "free_shipping_reached": "You've got free shipping!"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products and guides",
+    "results_count": {
+      "one": "{{ count }} result for \"{{ terms }}\"",
+      "other": "{{ count }} results for \"{{ terms }}\""
+    },
+    "no_results": "No results. Try a different search."
+  },
+  "blog": {
+    "no_articles": "No posts yet.",
+    "back": "Back to guides",
+    "example_title": "Guide title"
+  },
+  "not_found": {
+    "title": "Page not found",
+    "text": "The link may be wrong or the page may have moved.",
+    "back": "Back to home"
+  },
+  "customer": {
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot your password?",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "reset": "Reset password",
+    "reset_sent": "We've sent you an email with instructions.",
+    "back_to_login": "Back to login",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "account_title": "Account",
+    "orders": "Order history",
+    "order": "Order",
+    "date": "Date",
+    "payment": "Payment",
+    "fulfillment": "Fulfillment",
+    "total": "Total",
+    "no_orders": "You haven't placed any orders yet."
+  },
+  "footer": {
+    "payment_methods": "Payment methods"
+  }
+}

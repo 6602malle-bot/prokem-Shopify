@@ -1,0 +1,30 @@
+<article class="page-width article section">
+  <header class="article__head">
+    <p class="article__meta">{{ article.published_at | time_tag: format: 'date' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+    <h1 class="article__title">{{ article.title }}</h1>
+  </header>
+  {%- if article.image -%}
+    <div class="article__image">
+      {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1600', sizes: '(min-width: 990px) 900px, 100vw', alt: article.image.alt | default: article.title }}
+    </div>
+  {%- endif -%}
+  <div class="article__body rte">{{ article.content }}</div>
+  <p class="article__back"><a class="link-arrow" href="{{ blog.url }}">{{ 'blog.back' | t }}</a></p>
+  {%- for block in section.blocks -%}
+    {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
+  {%- endfor -%}
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%d' | json }},
+  "author": { "@type": "Person", "name": {{ article.author | default: shop.name | json }} }
+}
+</script>
+
+{% schema %}
+{ "name": "Article", "blocks": [{ "type": "@app" }] }
+{% endschema %}

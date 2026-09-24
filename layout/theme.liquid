@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_header_bg }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 48, height: 48 }}">
+    {%- endif -%}
+
+    <title>{{ page_title }}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}</title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    {% render 'meta-tags' %}
+
+    {%- liquid
+      assign accent_brightness = settings.color_accent | color_brightness
+      if accent_brightness > 150
+        assign accent_text = '#161616'
+      else
+        assign accent_text = '#ffffff'
+      endif
+      case settings.button_shape
+        when 'square'
+          assign btn_radius = '0px'
+        when 'pill'
+          assign btn_radius = '999px'
+        else
+          assign btn_radius = settings.radius | append: 'px'
+      endcase
+    -%}
+    <style>
+      {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+      {{ settings.type_body_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+      :root {
+        --header-height: 0px;
+        --c-bg: {{ settings.color_bg }};
+        --c-bg-alt: {{ settings.color_bg_alt }};
+        --c-text: {{ settings.color_text }};
+        --c-muted: {{ settings.color_muted }};
+        --c-border: {{ settings.color_border }};
+        --c-header-bg: {{ settings.color_header_bg }};
+        --c-header-text: {{ settings.color_header_text }};
+        --c-accent: {{ settings.color_accent }};
+        --c-accent-text: {{ accent_text }};
+        --c-sale: {{ settings.color_sale }};
+        --c-footer-bg: {{ settings.color_footer_bg }};
+        --c-footer-text: {{ settings.color_footer_text }};
+        --font-head: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
+        --font-head-weight: {{ settings.type_heading_font.weight }};
+        --font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --page-width: {{ settings.page_width }}px;
+        --radius: {{ settings.radius }}px;
+        --btn-radius: {{ btn_radius }};
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ request.page_type | handleize }}" data-btn-style="{{ settings.button_style }}">
+    <a class="skip-link" href="#MainContent">{{ 'general.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+  </body>
+</html>

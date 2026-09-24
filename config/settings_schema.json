@@ -1,0 +1,77 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Gloss",
+    "theme_version": "1.0.0",
+    "theme_author": "Custom build",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_bg", "label": "Background", "default": "#ffffff" },
+      { "type": "color", "id": "color_bg_alt", "label": "Alternate background", "default": "#f4f4f2" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#161616" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#6b6b6b" },
+      { "type": "color", "id": "color_border", "label": "Borders", "default": "#e2e2df" },
+      { "type": "color", "id": "color_header_bg", "label": "Header background", "default": "#161616" },
+      { "type": "color", "id": "color_header_text", "label": "Header text", "default": "#ffffff" },
+      { "type": "color", "id": "color_accent", "label": "Accent (buttons, highlights)", "default": "#0067FF" },
+      { "type": "color", "id": "color_sale", "label": "Sale price", "default": "#d62828" },
+      { "type": "color", "id": "color_footer_bg", "label": "Footer background", "default": "#161616" },
+      { "type": "color", "id": "color_footer_text", "label": "Footer text", "default": "#ffffff" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "type_heading_font", "label": "Headings", "default": "assistant_n7" },
+      { "type": "font_picker", "id": "type_body_font", "label": "Body", "default": "assistant_n4" }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      { "type": "range", "id": "page_width", "label": "Max page width (px)", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
+      { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 20, "step": 2, "default": 6 }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      { "type": "select", "id": "button_style", "label": "Button style", "default": "solid", "options": [
+        { "value": "solid", "label": "Solid (filled)" },
+        { "value": "outline", "label": "Outline" }
+      ]},
+      { "type": "select", "id": "button_shape", "label": "Button shape", "default": "rounded", "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "rounded", "label": "Rounded" },
+        { "value": "pill", "label": "Pill" }
+      ]}
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      { "type": "number", "id": "free_shipping_threshold", "label": "Free shipping threshold", "info": "In the store's main currency. Leave empty to hide the progress bar.", "default": 1200 }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Square PNG, at least 32 x 32 px." }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "text", "id": "social_facebook", "label": "Facebook URL" },
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "social_youtube", "label": "YouTube URL" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "social_linkedin", "label": "LinkedIn URL" },
+      { "type": "text", "id": "social_snapchat", "label": "Snapchat URL" }
+    ]
+  }
+]

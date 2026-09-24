@@ -1,0 +1,216 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'product-form-' | append: section.id
+  assign on_sale = false
+  if current_variant.compare_at_price > current_variant.price
+    assign on_sale = true
+  endif
+-%}
+<section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}">
+  <div class="gallery" data-gallery>
+    <div class="gallery__main">
+      {%- for media in product.media -%}
+        <div class="gallery__slide{% if media.id == current_variant.featured_media.id or forloop.first and current_variant.featured_media == blank %} is-active{% endif %}" data-media="{{ media.id }}">
+          {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+        </div>
+      {%- else -%}
+        <div class="gallery__slide is-active">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <ul class="gallery__thumbs">
+        {%- for media in product.media -%}
+          <li>
+            <button type="button" class="gallery__thumb" data-thumb="{{ media.id }}" aria-label="{{ 'products.show_image' | t: n: forloop.index }}">
+              {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '80px', alt: '' }}
+            </button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  <div class="product__info">
+    {%- form 'product', product, id: form_id, class: 'product__form', novalidate: 'novalidate', data-product-form: 'true' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when '@app' -%}
+            <div {{ block.shopify_attributes }}>{% render block %}</div>
+
+          {%- when 'vendor' -%}
+            {%- if product.vendor != blank -%}
+              <p class="product__vendor" {{ block.shopify_attributes }}>{{ product.vendor }}</p>
+            {%- endif -%}
+
+          {%- when 'title' -%}
+            <h1 class="product__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="product__kicker"{% if block.settings.color != blank %} style="color: {{ block.settings.color }};"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+            {%- endif -%}
+
+          {%- when 'rating' -%}
+            {%- liquid
+              assign rating = product.metafields.reviews.rating.value
+              assign rating_count = product.metafields.reviews.rating_count
+            -%}
+            {%- if rating != blank -%}
+              <p class="product__rating" {{ block.shopify_attributes }} aria-label="{{ rating.rating }} / {{ rating.scale_max }}">
+                <span class="card__star" aria-hidden="true">★</span> {{ rating.rating | round: 1 }}{% if rating_count != blank %} <small>({{ rating_count }})</small>{% endif %}
+              </p>
+            {%- endif -%}
+
+          {%- when 'price' -%}
+            <div class="product__price" data-price {{ block.shopify_attributes }}>
+              <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
+              <s class="price__compare" data-price-compare{% unless on_sale %} hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
+            </div>
+            {%- if shop.taxes_included -%}
+              <p class="product__tax">{{ 'products.tax_included' | t }}</p>
+            {%- endif -%}
+
+          {%- when 'variant_picker' -%}
+            {%- unless product.has_only_default_variant -%}
+              <div {{ block.shopify_attributes }}>
+                {%- for option in product.options_with_values -%}
+                  <fieldset class="option" data-option>
+                    <legend>{{ option.name }}</legend>
+                    <div class="option__values">
+                      {%- for value in option.values -%}
+                        <label class="pill">
+                          <input type="radio" name="options[{{ option.name | escape }}]" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                          <span>{{ value }}</span>
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+          {%- when 'quantity' -%}
+            {%- liquid
+              assign qty_rule = current_variant.quantity_rule
+              assign qty_min = qty_rule.min | default: 1
+              assign qty_step = qty_rule.increment | default: 1
+              assign has_rule = false
+              if qty_rule.increment > 1 or qty_rule.min > 1 or qty_rule.max != blank
+                assign has_rule = true
+              endif
+            -%}
+            <div class="field field--qty" {{ block.shopify_attributes }} data-qty-block data-hint-template="{{ 'products.quantity_rule' | t: min: '§MIN§', step: '§STEP§' | escape }}">
+              <span class="field__label">{{ 'products.quantity' | t }}</span>
+              <div class="qty" data-qty>
+                <button type="button" class="qty__btn" data-qty-minus aria-label="{{ 'products.decrease' | t }}">{% render 'icon', name: 'minus', size: 16 %}</button>
+                <input type="number" name="quantity" value="{{ qty_min }}" min="{{ qty_min }}"{% if qty_rule.max != blank %} max="{{ qty_rule.max }}"{% endif %} step="{{ qty_step }}" inputmode="numeric" aria-label="{{ 'products.quantity' | t }}" data-qty-input>
+                <button type="button" class="qty__btn" data-qty-plus aria-label="{{ 'products.increase' | t }}">{% render 'icon', name: 'plus', size: 16 %}</button>
+              </div>
+              <p class="field__hint" data-qty-hint{% unless has_rule %} hidden{% endunless %}>{% if has_rule %}{{ 'products.quantity_rule' | t: min: qty_min, step: qty_step }}{% endif %}</p>
+            </div>
+
+          {%- when 'volume_pricing' -%}
+            <div class="volume-pricing" {{ block.shopify_attributes }} data-volume-pricing
+              data-title="{{ 'products.volume_pricing_title' | t | escape }}"
+              data-each="{{ 'products.each' | t | escape }}"
+              data-min-template="{{ 'products.volume_pricing_min' | t: min: '§MIN§' | escape }}"
+              {%- if current_variant.quantity_price_breaks.size == 0 %} hidden{% endif %}>
+              <p class="volume-pricing__title">{{ 'products.volume_pricing_title' | t }}</p>
+              <ul class="volume-pricing__list" data-volume-list>
+                <li><span>{{ 'products.volume_pricing_min' | t: min: qty_min }}</span> <span>{{ current_variant.price | money }} / {{ 'products.each' | t }}</span></li>
+                {%- for break in current_variant.quantity_price_breaks -%}
+                  <li><span>{{ break.minimum_quantity }}+</span> <span>{{ break.price | money }} / {{ 'products.each' | t }}</span></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+
+          {%- when 'buy_buttons' -%}
+            <div class="product__buy" {{ block.shopify_attributes }}>
+              <button type="submit" name="add" class="btn btn--block" data-add{% unless current_variant.available %} disabled{% endunless %}>
+                <span data-add-label>{% if current_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}</span>
+              </button>
+            </div>
+            {%- if block.settings.show_dynamic_checkout -%}
+              {%- comment -%} B2B customers check out via PO/net terms, not Shop Pay / Apple Pay, so the accelerated buttons are hidden for them. {%- endcomment -%}
+              {%- unless customer.b2b? -%}
+                {{ form | payment_button }}
+              {%- endunless -%}
+            {%- endif -%}
+
+          {%- when 'description' -%}
+            {%- if product.description != blank -%}
+              <div class="product__desc rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
+            {%- endif -%}
+
+          {%- when 'usp' -%}
+            <ul class="product__usps product__usps--single" {{ block.shopify_attributes }}>
+              <li>{% render 'icon', name: block.settings.icon, size: 22 %}<span>{{ block.settings.text }}</span></li>
+            </ul>
+
+          {%- when 'sku' -%}
+            {%- if current_variant.sku != blank -%}
+              <p class="product__sku" {{ block.shopify_attributes }}>{{ 'products.sku' | t }}: <span data-sku>{{ current_variant.sku }}</span></p>
+            {%- endif -%}
+
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- endform -%}
+  </div>
+
+  <script type="application/json" data-product-json>{{ product | json }}</script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "blocks": [
+    { "type": "@app" },
+    { "type": "vendor", "name": "Vendor" },
+    { "type": "title", "name": "Title" },
+    {
+      "type": "text",
+      "name": "Custom text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>May the gloss be with you ®</p>" },
+        { "type": "color", "id": "color", "label": "Text color", "info": "Leave empty to use the standard text colour." }
+      ]
+    },
+    { "type": "rating", "name": "Rating", "settings": [
+      { "type": "paragraph", "content": "Shows a star rating if the product has reviews (e.g. via Judge.me or Shopify Product Reviews)." }
+    ]},
+    { "type": "price", "name": "Price" },
+    { "type": "volume_pricing", "name": "Volume pricing (B2B)", "settings": [
+      { "type": "paragraph", "content": "Shows quantity price breaks for company (B2B) customers who have volume pricing set up on this product. Invisible to regular retail customers." }
+    ]},
+    { "type": "variant_picker", "name": "Variant picker" },
+    { "type": "quantity", "name": "Quantity selector" },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "settings": [
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "info": "Shows Shop Pay, Apple Pay etc. if enabled in your payment settings.", "default": true }
+      ]
+    },
+    { "type": "description", "name": "Description" },
+    {
+      "type": "usp",
+      "name": "Trust point",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+          { "value": "truck", "label": "Truck" },
+          { "value": "clock", "label": "Clock" },
+          { "value": "star", "label": "Star" },
+          { "value": "tag", "label": "Tag" },
+          { "value": "leaf", "label": "Leaf" },
+          { "value": "shield", "label": "Shield" }
+        ]},
+        { "type": "text", "id": "text", "label": "Text", "default": "Fraktfritt över 1 200 kr" }
+      ]
+    },
+    { "type": "sku", "name": "SKU" }
+  ]
+}
+{% endschema %}

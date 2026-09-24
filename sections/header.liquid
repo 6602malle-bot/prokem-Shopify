@@ -1,0 +1,163 @@
+{%- liquid
+  assign menu = section.settings.menu
+  assign is_transparent = false
+  if section.settings.transparent_header
+    if section.settings.transparent_home_only == false or request.page_type == 'index'
+      assign is_transparent = true
+    endif
+  endif
+-%}
+<header class="header{% if is_transparent %} header--transparent{% endif %}" data-header{% if is_transparent %} style="--header-transparent-text: {{ section.settings.transparent_text_color }};"{% endif %}>
+  <div class="page-width header__inner">
+    <button type="button" class="icon-btn header__burger" aria-label="{{ 'general.menu' | t }}" aria-expanded="false" aria-controls="MobileDrawer" data-menu-open>
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    <a class="header__logo" href="{{ routes.root_url }}" style="--logo-w: {{ section.settings.logo_width }}px">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 600 | image_tag: loading: 'eager', widths: '200, 300, 400, 600', sizes: '(min-width: 990px) 300px, 200px', alt: shop.name, class: 'header__logo-img' }}
+      {%- else -%}
+        <span class="header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" aria-label="{{ 'general.main_navigation' | t }}">
+      <ul class="nav">
+        {%- for link in menu.links -%}
+          <li class="nav__item{% if link.links.size > 0 %} has-children{% endif %}">
+            <a class="nav__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              {%- assign promo = nil -%}
+              {%- assign link_key = link.title | downcase | strip -%}
+              {%- for block in section.blocks -%}
+                {%- assign block_key = block.settings.menu_item | downcase | strip -%}
+                {%- if block_key == link_key -%}{%- assign promo = block -%}{%- endif -%}
+              {%- endfor -%}
+              <div class="mega" data-mega>
+                <div class="page-width mega__inner{% if promo %} has-promo{% endif %}">
+                  <div class="mega__main">
+                    <a class="mega__all" href="{{ link.url }}">{{ 'general.view_all_in' | t: title: link.title }} {% render 'icon', name: 'chevron-right', size: 16 %}</a>
+                    <ul class="mega__groups">
+                      {%- for child in link.links -%}
+                        <li class="mega__group">
+                          <a class="mega__group-title" href="{{ child.url }}">{{ child.title }}</a>
+                          {%- if child.links.size > 0 -%}
+                            <ul class="mega__sub">
+                              {%- for grandchild in child.links -%}
+                                <li><a href="{{ grandchild.url }}">{{ grandchild.title }}</a></li>
+                              {%- endfor -%}
+                            </ul>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                  {%- if promo -%}
+                    <a class="mega__promo" href="{{ promo.settings.link | default: link.url }}" {{ promo.shopify_attributes }}>
+                      {%- if promo.settings.image != blank -%}
+                        {{ promo.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '350, 500, 700', sizes: '340px', alt: '', class: 'mega__promo-img' }}
+                      {%- else -%}
+                        <span class="mega__promo-img mega__promo-img--empty"></span>
+                      {%- endif -%}
+                      <span class="mega__promo-body">
+                        {%- if promo.settings.heading != blank -%}<span class="mega__promo-title">{{ promo.settings.heading }}</span>{%- endif -%}
+                        {%- if promo.settings.button_label != blank -%}<span class="btn btn--sm">{{ promo.settings.button_label }}</span>{%- endif -%}
+                      </span>
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <details class="header__search" data-search>
+        <summary class="icon-btn" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search' %}</summary>
+        <div class="header__search-panel">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="page-width search-form">
+            <input type="search" name="q" placeholder="{{ 'search.placeholder' | t }}" aria-label="{{ 'general.search' | t }}" autocomplete="off">
+            <input type="hidden" name="type" value="product,article,page">
+            <button type="submit" class="btn">{{ 'general.search' | t }}</button>
+          </form>
+        </div>
+      </details>
+      <a class="icon-btn header__account" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">{% render 'icon', name: 'user' %}</a>
+      <a class="icon-btn header__cart" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="drawer" id="MobileDrawer" data-drawer hidden>
+    <div class="drawer__scrim" data-menu-close></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.menu' | t }}">
+      <div class="drawer__head">
+        <span class="drawer__title">{{ 'general.menu' | t }}</span>
+        <button type="button" class="icon-btn" aria-label="{{ 'general.close' | t }}" data-menu-close>{% render 'icon', name: 'close' %}</button>
+      </div>
+      <ul class="drawer__list">
+        {%- for link in menu.links -%}
+          {%- if link.links.size > 0 -%}
+            <li>
+              <details class="drawer__group">
+                <summary>{{ link.title }} {% render 'icon', name: 'chevron-down', size: 18 %}</summary>
+                <ul>
+                  <li><a href="{{ link.url }}"><strong>{{ 'general.view_all_in' | t: title: link.title }}</strong></a></li>
+                  {%- for child in link.links -%}
+                    <li>
+                      <a href="{{ child.url }}">{{ child.title }}</a>
+                      {%- if child.links.size > 0 -%}
+                        <ul class="drawer__sub">
+                          {%- for grandchild in child.links -%}
+                            <li><a href="{{ grandchild.url }}">{{ grandchild.title }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </li>
+          {%- else -%}
+            <li><a class="drawer__link" href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      <div class="drawer__foot">
+        <a href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Use a light logo – the header is dark by default." },
+    { "type": "range", "id": "logo_width", "label": "Logo width (px)", "min": 60, "max": 300, "step": 10, "default": 140 },
+    { "type": "link_list", "id": "menu", "label": "Main menu", "default": "main-menu", "info": "Menu items with sub-links open as a mega menu. Third-level links appear as lists under each column heading." },
+    { "type": "header", "content": "Transparent header" },
+    { "type": "checkbox", "id": "transparent_header", "label": "Enable transparent header", "info": "The header floats on top of the first section instead of pushing it down. Turn on \"Render behind header\" on the hero slideshow (or another top section) so it reaches all the way up. Becomes solid as soon as the visitor scrolls.", "default": false },
+    { "type": "checkbox", "id": "transparent_home_only", "label": "Only on the homepage", "info": "Other pages keep a solid header, since they don't usually start with a full-width image.", "default": true },
+    { "type": "color", "id": "transparent_text_color", "label": "Text and icon colour while transparent", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "mega_promo",
+      "name": "Mega menu promo",
+      "settings": [
+        { "type": "text", "id": "menu_item", "label": "Menu item title", "info": "Must match the top-level menu item exactly, e.g. Exteriör." },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Recommended 700 x 500 px." },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Hösttvättpaket – spara 10%" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Se paketen" },
+        { "type": "url", "id": "link", "label": "Link", "info": "Defaults to the menu item link." }
+      ]
+    }
+  ]
+}
+{% endschema %}
