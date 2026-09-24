@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Header group",
   "type": "header",
@@ -5,17 +14,50 @@
     "announcement": {
       "type": "announcement-bar",
       "blocks": {
-        "usp_1": { "type": "usp", "settings": { "text": "1–2 dagars leveranstid" } },
-        "usp_2": { "type": "usp", "settings": { "text": "Fraktfritt över 1 200 kr" } },
-        "usp_3": { "type": "usp", "settings": { "text": "Dekaler ingår i alla ordrar" } }
+        "usp_1": {
+          "type": "usp",
+          "settings": {
+            "text": "1–2 dagars leveranstid"
+          }
+        },
+        "usp_2": {
+          "type": "usp",
+          "settings": {
+            "text": "Fraktfritt över 1 200 kr"
+          }
+        },
+        "usp_3": {
+          "type": "usp",
+          "settings": {
+            "text": "Dekaler ingår i alla ordrar"
+          }
+        }
       },
-      "block_order": ["usp_1", "usp_2", "usp_3"],
-      "settings": {}
+      "block_order": [
+        "usp_1",
+        "usp_2",
+        "usp_3"
+      ],
+      "settings": {
+        "menu": "",
+        "bg": "#000000",
+        "text": "#ffffff"
+      }
     },
     "header": {
       "type": "header",
-      "settings": { "menu": "main-menu", "logo_width": 140 }
+      "settings": {
+        "logo": "shopify://shop_images/logo-w.png",
+        "logo_width": 140,
+        "menu": "main-menu",
+        "transparent_header": true,
+        "transparent_home_only": true,
+        "transparent_text_color": "#ffffff"
+      }
     }
   },
-  "order": ["announcement", "header"]
+  "order": [
+    "announcement",
+    "header"
+  ]
 }

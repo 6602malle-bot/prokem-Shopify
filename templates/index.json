@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -6,22 +15,35 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/vintage-car-speedometer.jpg",
             "heading": "Hösttvättpaket – spara 10%",
-            "button_label": "Till paketen"
+            "text": "",
+            "button_label": "Till paketen",
+            "button_link": "",
+            "position": "bottom",
+            "align": "left"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
             "heading": "Mångsidig allrengöring i flera dofter",
-            "button_label": "Läs mer"
+            "text": "",
+            "button_label": "Läs mer",
+            "button_link": "",
+            "position": "center",
+            "align": "left"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
             "heading": "Skydda bilen. Snabbt och enkelt!",
-            "button_label": "Till produkten"
+            "text": "",
+            "button_label": "Till produkten",
+            "button_link": "",
+            "position": "center",
+            "align": "left"
           }
         }
       },
@@ -31,11 +53,12 @@
         "slide_3"
       ],
       "settings": {
+        "label": "Kampanjer",
         "height": "medium",
-        "autoplay": true,
-        "interval": 6,
         "overlay": 35,
-        "label": "Kampanjer"
+        "behind_header": false,
+        "autoplay": true,
+        "interval": 6
       }
     },
     "categories": {
@@ -44,49 +67,65 @@
         "t1": {
           "type": "tile",
           "settings": {
-            "title": "Alkalisk avfettning"
+            "collection": "",
+            "title": "Alkalisk avfettning",
+            "link": ""
           }
         },
         "t2": {
           "type": "tile",
           "settings": {
-            "title": "Exteriör"
+            "collection": "",
+            "title": "Exteriör",
+            "link": ""
           }
         },
         "t3": {
           "type": "tile",
           "settings": {
-            "title": "Interiör"
+            "collection": "",
+            "title": "Interiör",
+            "link": ""
           }
         },
         "t4": {
           "type": "tile",
           "settings": {
-            "title": "Däck & fälg"
+            "collection": "",
+            "title": "Däck & fälg",
+            "link": ""
           }
         },
         "t5": {
           "type": "tile",
           "settings": {
-            "title": "Polering"
+            "collection": "",
+            "title": "Polering",
+            "link": ""
           }
         },
         "t6": {
           "type": "tile",
           "settings": {
-            "title": "Torkdukar"
+            "collection": "",
+            "title": "Torkdukar",
+            "link": ""
           }
         },
         "t7": {
           "type": "tile",
           "settings": {
-            "title": "Glas & rutor"
+            "collection": "",
+            "title": "Glas & rutor",
+            "link": ""
           }
         },
         "t8": {
           "type": "tile",
           "settings": {
-            "title": "Tillbehör"
+            "collection": "",
+            "title": "Tillbehör",
+            "link": ""
           }
         }
       },
@@ -102,6 +141,7 @@
       ],
       "settings": {
         "heading": "Utvalda kategorier",
+        "layout": "grid",
         "style": "card",
         "columns": 4,
         "columns_mobile": 2
@@ -111,6 +151,7 @@
       "type": "featured-collection",
       "settings": {
         "heading": "Populära produkter",
+        "collection": "",
         "products_to_show": 4,
         "columns": 4,
         "show_view_all": true
@@ -124,7 +165,9 @@
           "settings": {
             "badge": "Nyhet!",
             "title": "Storsäljande allrengöring – nu även i 5-liter",
-            "button_label": "Till produkten"
+            "text": "",
+            "button_label": "Till produkten",
+            "link": ""
           }
         },
         "c2": {
@@ -132,7 +175,9 @@
           "settings": {
             "badge": "Nyhet!",
             "title": "Kombinerad kallavfettning och flygrostlösare",
-            "button_label": "Till produkten"
+            "text": "",
+            "button_label": "Till produkten",
+            "link": ""
           }
         }
       },
@@ -145,49 +190,78 @@
         "columns": 2
       }
     },
+    "bestsellers": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "Bästsäljare",
+        "subheading": "Våra populäraste produkter just nu",
+        "collection": "",
+        "products_to_show": 10,
+        "per_row": 4,
+        "style": "light",
+        "show_quick_add": true,
+        "show_rating": true,
+        "show_discount": true,
+        "show_view_all": true
+      }
+    },
     "vehicles": {
       "type": "collection-tiles",
       "blocks": {
         "v1": {
           "type": "tile",
           "settings": {
-            "title": "Bil"
+            "collection": "",
+            "title": "Bil",
+            "link": ""
           }
         },
         "v2": {
           "type": "tile",
           "settings": {
-            "title": "Båt"
+            "collection": "",
+            "title": "Båt",
+            "link": ""
           }
         },
         "v3": {
           "type": "tile",
           "settings": {
-            "title": "Motocross"
+            "collection": "",
+            "title": "Motocross",
+            "link": ""
           }
         },
         "v4": {
           "type": "tile",
           "settings": {
-            "title": "Motorcykel"
+            "collection": "",
+            "title": "Motorcykel",
+            "link": ""
           }
         },
         "v5": {
           "type": "tile",
           "settings": {
-            "title": "Cykel & MTB"
+            "collection": "",
+            "title": "Cykel & MTB",
+            "link": ""
           }
         },
         "v6": {
           "type": "tile",
           "settings": {
-            "title": "Lastbil & entreprenad"
+            "collection": "",
+            "title": "Lastbil & entreprenad",
+            "link": ""
           }
         },
         "v7": {
           "type": "tile",
           "settings": {
-            "title": "Hem & hushåll"
+            "collection": "",
+            "title": "Hem & hushåll",
+            "link": ""
           }
         }
       },
@@ -202,6 +276,7 @@
       ],
       "settings": {
         "heading": "Handla efter fordonstyp",
+        "layout": "grid",
         "style": "round",
         "columns": 7,
         "columns_mobile": 2
@@ -250,7 +325,11 @@
     "spotlight": {
       "type": "featured-product",
       "settings": {
+        "product": "",
+        "badge": "",
+        "title": "",
         "tagline": "May the gloss be with you ®",
+        "text": "",
         "button_label": "Köp nu"
       }
     },
@@ -258,6 +337,7 @@
       "type": "guides",
       "settings": {
         "heading": "Guider",
+        "blog": "",
         "posts_to_show": 5,
         "columns": 5
       }
@@ -271,7 +351,8 @@
             "badge": "",
             "title": "Däckglans i sprayform",
             "text": "Perfekt satinlook",
-            "button_label": "Kolla in"
+            "button_label": "Kolla in",
+            "link": ""
           }
         },
         "c2": {
@@ -280,7 +361,8 @@
             "badge": "",
             "title": "Nästa generations keramiska lackskydd",
             "text": "Enkelt att applicera",
-            "button_label": "Till produkten"
+            "button_label": "Till produkten",
+            "link": ""
           }
         }
       },
@@ -295,20 +377,9 @@
     },
     "about": {
       "type": "seo-text",
-      "settings": {}
-    },
-    "bestsellers": {
-      "type": "product-carousel",
       "settings": {
-        "heading": "Bästsäljare",
-        "subheading": "Våra populäraste produkter just nu",
-        "products_to_show": 10,
-        "per_row": 4,
-        "style": "light",
-        "show_quick_add": true,
-        "show_rating": true,
-        "show_discount": true,
-        "show_view_all": true
+        "heading": "Bilvårdsprodukter för dig som bryr dig om resultatet",
+        "text": "<p>Berätta om ditt varumärke här: vad som gör produkterna annorlunda, hur de testas och vilka som använder dem. Länka gärna till era viktigaste kategorier och produkter för att hjälpa både kunder och sökmotorer.</p>"
       }
     }
   },
