@@ -67,8 +67,8 @@
         "t1": {
           "type": "tile",
           "settings": {
-            "collection": "",
-            "title": "Alkalisk avfettning",
+            "collection": "additiv-tillsatser",
+            "title": "",
             "link": ""
           }
         },
@@ -141,9 +141,9 @@
       ],
       "settings": {
         "heading": "Utvalda kategorier",
-        "layout": "grid",
-        "style": "card",
-        "columns": 4,
+        "layout": "carousel",
+        "style": "round",
+        "columns": 6,
         "columns_mobile": 2
       }
     },
@@ -325,7 +325,7 @@
     "spotlight": {
       "type": "featured-product",
       "settings": {
-        "product": "",
+        "product": "allround-verktygssats-105-delars-pris-fran-1317",
         "badge": "",
         "title": "",
         "tagline": "May the gloss be with you ®",
