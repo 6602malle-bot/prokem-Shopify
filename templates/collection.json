@@ -53,10 +53,39 @@
         "heading": "{{ collection.title }}",
         "text": "{{ collection.description }}"
       }
+    },
+    "blocks_9J3q9J": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_13fbfb8_4HEzzw": {
+          "type": "ai_gen_block_13fbfb8",
+          "settings": {
+            "desktop_width_percent": 100,
+            "aria_label": "Breadcrumb",
+            "home_label": "Hem",
+            "separator": "/",
+            "search_label": "Sökresultat",
+            "cart_label": "Varukorg",
+            "font_size": 14,
+            "item_gap": 8,
+            "text_color": "#161616",
+            "link_color": "#0048B3",
+            "current_color": "#161616",
+            "separator_color": "#6b6b6b"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_13fbfb8_4HEzzw"
+      ],
+      "name": "Breadcrumb",
+      "settings": {}
     }
   },
   "order": [
     "hero_slideshow_7gdii7",
+    "blocks_9J3q9J",
     "main",
     "seo_text_WWBwxF"
   ]
