@@ -31,7 +31,7 @@
       "name": "Hero slideshow",
       "settings": {
         "label": "",
-        "height": "medium",
+        "height": "small",
         "overlay": 35,
         "behind_header": false,
         "autoplay": true,
