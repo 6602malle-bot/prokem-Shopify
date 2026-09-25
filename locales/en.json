@@ -21,7 +21,9 @@
     "save_percent": "Save {{ pct }}%",
     "low_stock": "Few left",
     "in_stock": "In stock",
-    "carousel_label": "Product carousel"
+    "carousel_label": "Product carousel",
+    "breadcrumb_home": "Home",
+    "breadcrumb": "Breadcrumbs"
   },
   "products": {
     "add_to_cart": "Add to cart",

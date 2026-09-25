@@ -6,6 +6,7 @@
   endif
 -%}
 <section class="page-width collection">
+  {% render 'breadcrumbs' %}
   <header class="collection__head">
     <h1 class="collection__title">{{ collection.title }}</h1>
     {%- if collection.description != blank and section.settings.show_description -%}

@@ -1,4 +1,5 @@
 <section class="page-width section">
+  {% render 'breadcrumbs' %}
   <h1 class="section__title">{{ blog.title }}</h1>
   {%- paginate blog.articles by section.settings.posts_per_page -%}
     <div class="grid" style="--cols-d: {{ section.settings.columns }}; --cols-m: 2; margin-top: 24px">

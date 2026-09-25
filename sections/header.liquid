@@ -1,7 +1,7 @@
 {%- liquid
   assign menu = section.settings.menu
   assign is_transparent = false
-  if section.settings.transparent_header
+  if section.settings.transparent_header and request.page_type != 'product'
     if section.settings.transparent_home_only == false or request.page_type == 'index'
       assign is_transparent = true
     endif
@@ -142,7 +142,7 @@
     { "type": "range", "id": "logo_width", "label": "Logo width (px)", "min": 60, "max": 300, "step": 10, "default": 140 },
     { "type": "link_list", "id": "menu", "label": "Main menu", "default": "main-menu", "info": "Menu items with sub-links open as a mega menu. Third-level links appear as lists under each column heading." },
     { "type": "header", "content": "Transparent header" },
-    { "type": "checkbox", "id": "transparent_header", "label": "Enable transparent header", "info": "The header floats on top of the first section instead of pushing it down. Turn on \"Render behind header\" on the hero slideshow (or another top section) so it reaches all the way up. Becomes solid as soon as the visitor scrolls.", "default": false },
+    { "type": "checkbox", "id": "transparent_header", "label": "Enable transparent header", "info": "The header floats on top of the first section instead of pushing it down (works automatically, whatever that section is). Never applied on the product page. Becomes solid as soon as the visitor scrolls.", "default": false },
     { "type": "checkbox", "id": "transparent_home_only", "label": "Only on the homepage", "info": "Other pages keep a solid header, since they don't usually start with a full-width image.", "default": true },
     { "type": "color", "id": "transparent_text_color", "label": "Text and icon colour while transparent", "default": "#ffffff" }
   ],

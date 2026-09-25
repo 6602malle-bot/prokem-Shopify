@@ -21,7 +21,9 @@
     "save_percent": "Spara {{ pct }}%",
     "low_stock": "Få kvar",
     "in_stock": "I lager",
-    "carousel_label": "Produktkarusell"
+    "carousel_label": "Produktkarusell",
+    "breadcrumb_home": "Hem",
+    "breadcrumb": "Brödsmulor"
   },
   "products": {
     "add_to_cart": "Lägg i varukorg",

@@ -7,6 +7,7 @@
   endif
 -%}
 <section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}">
+  {% render 'breadcrumbs' %}
   <div class="gallery" data-gallery>
     <div class="gallery__main">
       {%- for media in product.media -%}

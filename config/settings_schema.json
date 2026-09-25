@@ -34,7 +34,8 @@
     "name": "Layout",
     "settings": [
       { "type": "range", "id": "page_width", "label": "Max page width (px)", "min": 1000, "max": 1600, "step": 50, "default": 1400 },
-      { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 20, "step": 2, "default": 6 }
+      { "type": "range", "id": "radius", "label": "Corner radius (px)", "min": 0, "max": 20, "step": 2, "default": 6 },
+      { "type": "checkbox", "id": "show_breadcrumbs", "label": "Show breadcrumbs", "info": "Shown on product, collection, page, blog, article and search pages.", "default": true }
     ]
   },
   {

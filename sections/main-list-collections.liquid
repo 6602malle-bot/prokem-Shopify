@@ -1,4 +1,5 @@
 <section class="page-width section">
+  {% render 'breadcrumbs' %}
   <h1 class="section__title">{{ 'collection.all_collections' | t }}</h1>
   <div class="grid tiles tiles--card" style="--cols-d: {{ section.settings.columns }}; --cols-m: 2; margin-top: 24px">
     {%- for collection in collections -%}

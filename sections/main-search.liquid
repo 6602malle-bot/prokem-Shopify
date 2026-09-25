@@ -1,4 +1,5 @@
 <section class="page-width section">
+  {% render 'breadcrumbs' %}
   <h1 class="section__title">{{ 'search.title' | t }}</h1>
   <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-form--page">
     <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" aria-label="{{ 'general.search' | t }}">

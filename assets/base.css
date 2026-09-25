@@ -488,3 +488,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .feature__title { font-size: 1.1rem; margin-bottom: 6px; }
 .feature__text { color: var(--c-muted); margin: 0; }
 @media (min-width: 750px) { .features__grid { grid-template-columns: repeat(var(--cols-d, 3), 1fr); gap: 32px; } }
+
+/* Breadcrumbs ------------------------------------------------------------ */
+.breadcrumb { padding-top: 18px; padding-bottom: 0; grid-column: 1 / -1; }
+.breadcrumb__list { display: flex; flex-wrap: wrap; align-items: center; list-style: none; margin: 0; padding: 0; font-size: .82rem; color: var(--c-muted); }
+.breadcrumb__list li { display: flex; align-items: center; min-width: 0; }
+.breadcrumb__list li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 40vw; }
+.breadcrumb__list li:not(:last-child)::after { content: "›"; margin: 0 8px; color: var(--c-border); }
+.breadcrumb__list a { color: inherit; text-decoration: none; }
+.breadcrumb__list a:hover { color: var(--c-text); text-decoration: underline; }
+.breadcrumb__list li[aria-current="page"] { color: var(--c-text); font-weight: 600; }

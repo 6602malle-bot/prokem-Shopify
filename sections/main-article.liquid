@@ -1,4 +1,5 @@
 <article class="page-width article section">
+  {% render 'breadcrumbs' %}
   <header class="article__head">
     <p class="article__meta">{{ article.published_at | time_tag: format: 'date' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
     <h1 class="article__title">{{ article.title }}</h1>
