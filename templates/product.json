@@ -97,8 +97,12 @@
     },
     "179031893857d0a860": {
       "type": "_blocks",
+      "settings": {}
+    },
+    "blocks_MYtxpf": {
+      "type": "_blocks",
       "blocks": {
-        "ai_gen_block_13fbfb8_jjVhL8": {
+        "ai_gen_block_13fbfb8_LaVNNH": {
           "type": "ai_gen_block_13fbfb8",
           "settings": {
             "desktop_width_percent": 100,
@@ -118,12 +122,14 @@
         }
       },
       "block_order": [
-        "ai_gen_block_13fbfb8_jjVhL8"
+        "ai_gen_block_13fbfb8_LaVNNH"
       ],
+      "name": "Breadcrumb",
       "settings": {}
     }
   },
   "order": [
+    "blocks_MYtxpf",
     "main",
     "related",
     "179031893857d0a860"
