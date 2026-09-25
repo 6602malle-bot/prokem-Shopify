@@ -1,0 +1,214 @@
+{% doc %}
+  @prompt
+    Breadcrumb
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-breadcrumb-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.5;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 {{ block.settings.item_gap }}px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__item {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ block.settings.item_gap }}px;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link:hover {
+    color: {{ block.settings.link_color }};
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__current {
+    color: {{ block.settings.current_color }};
+    font-weight: 600;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__separator {
+    color: {{ block.settings.separator_color }};
+    user-select: none;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link:focus-visible {
+    outline: 2px solid {{ block.settings.link_color }};
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+{% endstyle %}
+
+<nav class="ai-breadcrumb-{{ ai_gen_id }}" aria-label="{{ block.settings.aria_label | escape }}" {{ block.shopify_attributes }}>
+  <ol class="ai-breadcrumb-{{ ai_gen_id }}__list">
+    <li class="ai-breadcrumb-{{ ai_gen_id }}__item">
+      <a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ routes.root_url }}">{{ block.settings.home_label | escape }}</a>
+      <span class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</span>
+    </li>
+
+    {% if request.page_type == 'product' %}
+      {% if collection %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__item">
+          <a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ collection.url }}">{{ collection.title | escape }}</a>
+          <span class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</span>
+        </li>
+      {% elsif product.collections.size > 0 %}
+        {% assign breadcrumb_collection = product.collections.first %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__item">
+          <a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ breadcrumb_collection.url }}">{{ breadcrumb_collection.title | escape }}</a>
+          <span class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</span>
+        </li>
+      {% endif %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ product.title | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'collection' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ collection.title | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'page' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ page.title | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'article' %}
+      {% if blog %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__item">
+          <a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ blog.url }}">{{ blog.title | escape }}</a>
+          <span class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</span>
+        </li>
+      {% endif %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ article.title | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'blog' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ blog.title | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'search' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ block.settings.search_label | escape }}</span>
+      </li>
+    {% elsif request.page_type == 'cart' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__item" aria-current="page">
+        <span class="ai-breadcrumb-{{ ai_gen_id }}__current">{{ block.settings.cart_label | escape }}</span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Breadcrumb"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home label",
+      "default": "Hem"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "/"
+    },
+    {
+      "type": "text",
+      "id": "search_label",
+      "label": "Search page label",
+      "default": "Sökresultat"
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Cart page label",
+      "default": "Varukorg"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Item spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Link text",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link hover",
+      "default": "#0048B3"
+    },
+    {
+      "type": "color",
+      "id": "current_color",
+      "label": "Current page",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator",
+      "default": "#6b6b6b"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb"
+    }
+  ],
+  "tag": null,
+  "class": "breadcrumb-block"
+}
+{% endschema %}

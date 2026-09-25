@@ -1,27 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": { "type": "title", "settings": {} },
-        "price": { "type": "price", "settings": {} },
-        "volume_pricing": { "type": "volume_pricing", "settings": {} },
-        "variant_picker": { "type": "variant_picker", "settings": {} },
-        "quantity": { "type": "quantity", "settings": {} },
-        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
-        "u1": { "type": "usp", "settings": { "icon": "clock", "text": "1–2 dagars leveranstid" } },
-        "u2": { "type": "usp", "settings": { "icon": "truck", "text": "Fraktfritt över 1 200 kr" } },
-        "u3": { "type": "usp", "settings": { "icon": "tag", "text": "Dekaler ingår i varje order" } },
-        "description": { "type": "description", "settings": {} },
-        "sku": { "type": "sku", "settings": {} }
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "volume_pricing": {
+          "type": "volume_pricing",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "u1": {
+          "type": "usp",
+          "settings": {
+            "icon": "clock",
+            "text": "1–2 dagars leveranstid"
+          }
+        },
+        "u2": {
+          "type": "usp",
+          "settings": {
+            "icon": "truck",
+            "text": "Fraktfritt över 1 200 kr"
+          }
+        },
+        "u3": {
+          "type": "usp",
+          "settings": {
+            "icon": "tag",
+            "text": "Dekaler ingår i varje order"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "sku": {
+          "type": "sku",
+          "settings": {}
+        }
       },
-      "block_order": ["title", "price", "volume_pricing", "variant_picker", "quantity", "buy_buttons", "u1", "u2", "u3", "description", "sku"],
+      "block_order": [
+        "title",
+        "price",
+        "volume_pricing",
+        "variant_picker",
+        "quantity",
+        "buy_buttons",
+        "u1",
+        "u2",
+        "u3",
+        "description",
+        "sku"
+      ],
       "settings": {}
     },
     "related": {
       "type": "product-recommendations",
-      "settings": { "heading": "Passar bra ihop med", "layout": "carousel", "limit": 8, "per_row": 4, "show_quick_add": true, "show_rating": true, "show_discount": true }
+      "settings": {
+        "heading": "Passar bra ihop med",
+        "layout": "carousel",
+        "limit": 8,
+        "per_row": 4,
+        "show_quick_add": true,
+        "show_rating": true,
+        "show_discount": true
+      }
+    },
+    "179031893857d0a860": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_13fbfb8_jjVhL8": {
+          "type": "ai_gen_block_13fbfb8",
+          "settings": {
+            "desktop_width_percent": 100,
+            "aria_label": "Breadcrumb",
+            "home_label": "Hem",
+            "separator": "/",
+            "search_label": "Sökresultat",
+            "cart_label": "Varukorg",
+            "font_size": 14,
+            "item_gap": 8,
+            "text_color": "#161616",
+            "link_color": "#0048B3",
+            "current_color": "#161616",
+            "separator_color": "#6b6b6b"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_13fbfb8_jjVhL8"
+      ],
+      "settings": {}
     }
   },
-  "order": ["main", "related"]
+  "order": [
+    "main",
+    "related",
+    "179031893857d0a860"
+  ]
 }
