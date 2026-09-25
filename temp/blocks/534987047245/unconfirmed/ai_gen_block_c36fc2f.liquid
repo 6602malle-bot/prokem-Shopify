@@ -1,0 +1,168 @@
+{% doc %}
+  @prompt
+    Breadcrumb längst upp
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-breadcrumb-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: {{ block.settings.vertical_spacing }}px 0;
+    color: {{ block.settings.text_color }};
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link {
+    color: {{ block.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link:hover {
+    color: {{ block.settings.muted_color }};
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__link:focus-visible {
+    outline: 2px solid {{ block.settings.text_color }};
+    outline-offset: 3px;
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__separator,
+  .ai-breadcrumb-{{ ai_gen_id }}__current {
+    color: {{ block.settings.muted_color }};
+  }
+
+  .ai-breadcrumb-{{ ai_gen_id }}__current {
+    overflow-wrap: anywhere;
+  }
+{% endstyle %}
+
+<nav class="ai-breadcrumb-{{ ai_gen_id }}" aria-label="Breadcrumb" {{ block.shopify_attributes }}>
+  <ol class="ai-breadcrumb-{{ ai_gen_id }}__list">
+    <li><a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ routes.root_url }}">{{ block.settings.home_label | escape }}</a></li>
+    {% if template.name == 'product' %}
+      {% if collection %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+        <li><a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ collection.url }}">{{ collection.title | escape }}</a></li>
+      {% else %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+        <li><a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ routes.all_products_collection_url }}">{{ block.settings.products_label | escape }}</a></li>
+      {% endif %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ product.title | escape }}</li>
+    {% elsif template.name == 'collection' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ collection.title | escape }}</li>
+    {% elsif template.name == 'page' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ page.title | escape }}</li>
+    {% elsif template.name == 'article' %}
+      {% if blog %}
+        <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+        <li><a class="ai-breadcrumb-{{ ai_gen_id }}__link" href="{{ blog.url }}">{{ blog.title | escape }}</a></li>
+      {% endif %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ article.title | escape }}</li>
+    {% elsif template.name == 'blog' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ blog.title | escape }}</li>
+    {% elsif template.name == 'search' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ block.settings.search_label | escape }}</li>
+    {% elsif template.name == 'cart' %}
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__separator" aria-hidden="true">{{ block.settings.separator | escape }}</li>
+      <li class="ai-breadcrumb-{{ ai_gen_id }}__current" aria-current="page">{{ block.settings.cart_label | escape }}</li>
+    {% endif %}
+  </ol>
+</nav>
+
+{% schema %}
+{
+  "name": "Breadcrumb längst upp",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Hemtext",
+      "default": "Hem"
+    },
+    {
+      "type": "text",
+      "id": "products_label",
+      "label": "Produktext",
+      "default": "Produkter"
+    },
+    {
+      "type": "text",
+      "id": "search_label",
+      "label": "Söketikett",
+      "default": "Sökresultat"
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Varukorgsetikett",
+      "default": "Varukorg"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Avskiljare",
+      "default": "/"
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "label": "Vertikalt mellanrum",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Dämpad text",
+      "default": "#6b6b6b"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb längst upp"
+    }
+  ],
+  "tag": null,
+  "class": "breadcrumb-block"
+}
+{% endschema %}
