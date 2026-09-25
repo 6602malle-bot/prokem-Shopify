@@ -42,6 +42,7 @@
         "contact"
       ],
       "settings": {
+        "logo": "shopify://shop_images/logo-w.png",
         "app_text": "Exklusiva tävlingar, spel och nyheter – ladda ner vår app",
         "app_button": "Hämta",
         "app_link": "",
