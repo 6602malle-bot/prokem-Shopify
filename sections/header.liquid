@@ -85,7 +85,7 @@
         </div>
       </details>
       <a class="icon-btn header__account" href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">{% render 'icon', name: 'user' %}</a>
-      <a class="icon-btn header__cart" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}">
+      <a class="icon-btn header__cart" href="{{ routes.cart_url }}" aria-label="{{ 'general.cart' | t }}" data-cart-open>
         {% render 'icon', name: 'cart' %}
         <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
       </a>

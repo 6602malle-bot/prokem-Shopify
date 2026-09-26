@@ -52,7 +52,14 @@
     "quantity_rule": "Köps i steg om {{ step }}, minst {{ min }} st",
     "volume_pricing_title": "Mängdrabatt",
     "volume_pricing_min": "{{ min }}+",
-    "each": "st"
+    "each": "st",
+    "reviews_count": {
+      "one": "{{ count }} omdöme",
+      "other": "{{ count }} omdömen"
+    },
+    "in_stock": "Finns i lager",
+    "read_more": "Läs mer",
+    "read_less": "Visa mindre"
   },
   "collection": {
     "filters": "Filter",
@@ -79,7 +86,10 @@
     "shipping_note": "Frakt och eventuella avgifter beräknas i kassan.",
     "order_note": "Meddelande till oss",
     "free_shipping_left": "Handla för {{ amount }} till för fri frakt",
-    "free_shipping_reached": "Du har fri frakt!"
+    "free_shipping_reached": "Du har fri frakt!",
+    "drawer_title": "Din varukorg",
+    "view_cart": "Visa varukorg",
+    "added_to_cart": "Tillagd i varukorgen"
   },
   "search": {
     "title": "Sök",

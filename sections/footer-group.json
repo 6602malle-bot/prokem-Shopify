@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "Footer group",
   "type": "footer",
@@ -14,20 +5,8 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "menu_1": {
-          "type": "menu",
-          "settings": {
-            "heading": "Sortiment",
-            "menu": "main-menu"
-          }
-        },
-        "menu_2": {
-          "type": "menu",
-          "settings": {
-            "heading": "Information",
-            "menu": "footer"
-          }
-        },
+        "menu_1": { "type": "menu", "settings": { "heading": "Sortiment", "menu": "main-menu" } },
+        "menu_2": { "type": "menu", "settings": { "heading": "Information", "menu": "footer" } },
         "contact": {
           "type": "contact",
           "settings": {
@@ -36,21 +15,12 @@
           }
         }
       },
-      "block_order": [
-        "menu_1",
-        "menu_2",
-        "contact"
-      ],
+      "block_order": ["menu_1", "menu_2", "contact"],
       "settings": {
-        "logo": "shopify://shop_images/logo-w.png",
         "app_text": "Exklusiva tävlingar, spel och nyheter – ladda ner vår app",
-        "app_button": "Hämta",
-        "app_link": "",
-        "motto": "Rätt produkt på rätt ställe!"
+        "motto": "May the gloss be with you ®"
       }
     }
   },
-  "order": [
-    "footer"
-  ]
+  "order": ["footer"]
 }

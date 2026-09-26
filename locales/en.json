@@ -52,7 +52,14 @@
     "quantity_rule": "Sold in increments of {{ step }}, minimum {{ min }}",
     "volume_pricing_title": "Volume pricing",
     "volume_pricing_min": "{{ min }}+",
-    "each": "ea"
+    "each": "ea",
+    "reviews_count": {
+      "one": "{{ count }} review",
+      "other": "{{ count }} reviews"
+    },
+    "in_stock": "In stock",
+    "read_more": "Read more",
+    "read_less": "Show less"
   },
   "collection": {
     "filters": "Filters",
@@ -79,7 +86,10 @@
     "shipping_note": "Shipping and taxes are calculated at checkout.",
     "order_note": "Order note",
     "free_shipping_left": "Spend {{ amount }} more for free shipping",
-    "free_shipping_reached": "You've got free shipping!"
+    "free_shipping_reached": "You've got free shipping!",
+    "drawer_title": "Your cart",
+    "view_cart": "View cart",
+    "added_to_cart": "Added to cart"
   },
   "search": {
     "title": "Search",

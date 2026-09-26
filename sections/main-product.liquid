@@ -6,7 +6,7 @@
     assign on_sale = true
   endif
 -%}
-<section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}">
+<section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}">
   {% render 'breadcrumbs' %}
   <div class="gallery" data-gallery>
     <div class="gallery__main">
@@ -60,9 +60,54 @@
               assign rating_count = product.metafields.reviews.rating_count
             -%}
             {%- if rating != blank -%}
-              <p class="product__rating" {{ block.shopify_attributes }} aria-label="{{ rating.rating }} / {{ rating.scale_max }}">
-                <span class="card__star" aria-hidden="true">★</span> {{ rating.rating | round: 1 }}{% if rating_count != blank %} <small>({{ rating_count }})</small>{% endif %}
-              </p>
+              {%- if rating_count != blank and rating_count > 0 -%}
+                <a class="product__rating" href="#reviews" {{ block.shopify_attributes }} aria-label="{{ rating.rating }} / {{ rating.scale_max }}">
+                  <span class="card__star" aria-hidden="true">★</span> {{ rating.rating | round: 1 }} <small>({{ 'products.reviews_count' | t: count: rating_count }})</small>
+                </a>
+              {%- else -%}
+                <p class="product__rating" {{ block.shopify_attributes }} aria-label="{{ rating.rating }} / {{ rating.scale_max }}">
+                  <span class="card__star" aria-hidden="true">★</span> {{ rating.rating | round: 1 }}
+                </p>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'availability' -%}
+            {%- liquid
+              assign low = false
+              if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= 5
+                assign low = true
+              endif
+            -%}
+            <p class="product__availability{% if current_variant.available == false %} is-out{% elsif low %} is-low{% else %} is-in{% endif %}" {{ block.shopify_attributes }} data-availability data-low-text="{{ 'general.low_stock' | t | escape }}" data-in-stock-text="{{ 'products.in_stock' | t | escape }}">
+              <span class="product__availability-dot" aria-hidden="true"></span>
+              <span data-availability-text>
+                {%- if current_variant.available == false -%}{{ 'general.sold_out' | t }}
+                {%- elsif low -%}{{ 'general.low_stock' | t }}
+                {%- else -%}{{ 'products.in_stock' | t }}
+                {%- endif -%}
+              </span>
+            </p>
+
+          {%- when 'payment_icons' -%}
+            {%- if shop.enabled_payment_types.size > 0 -%}
+              <ul class="product__payments" {{ block.shopify_attributes }}>
+                {%- for type in shop.enabled_payment_types -%}
+                  <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+          {%- when 'accessories' -%}
+            {%- if block.settings.product_1 != blank or block.settings.product_2 != blank or block.settings.product_3 != blank or block.settings.product_4 != blank -%}
+              <div class="accessories" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}<p class="accessories__title">{{ block.settings.heading }}</p>{%- endif -%}
+                <ul class="accessories__list">
+                  {%- if block.settings.product_1 != blank -%}{% render 'accessory-item', acc: block.settings.product_1 %}{%- endif -%}
+                  {%- if block.settings.product_2 != blank -%}{% render 'accessory-item', acc: block.settings.product_2 %}{%- endif -%}
+                  {%- if block.settings.product_3 != blank -%}{% render 'accessory-item', acc: block.settings.product_3 %}{%- endif -%}
+                  {%- if block.settings.product_4 != blank -%}{% render 'accessory-item', acc: block.settings.product_4 %}{%- endif -%}
+                </ul>
+              </div>
             {%- endif -%}
 
           {%- when 'price' -%}
@@ -143,7 +188,19 @@
 
           {%- when 'description' -%}
             {%- if product.description != blank -%}
-              <div class="product__desc rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
+              <div class="product__desc-wrap" data-readmore data-more-text="{{ 'products.read_more' | t | escape }}" data-less-text="{{ 'products.read_less' | t | escape }}" {{ block.shopify_attributes }}>
+                <div class="product__desc rte">{{ product.description }}</div>
+                <button type="button" class="product__desc-toggle" data-readmore-btn>{{ 'products.read_more' | t }}</button>
+              </div>
+            {%- endif -%}
+
+          {%- when 'video' -%}
+            {%- if block.settings.video_url != blank -%}
+              <div class="product__video" {{ block.shopify_attributes }}>
+                <div class="product__video-frame">
+                  <iframe src="{{ block.settings.video_url }}" title="{{ product.title | escape }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
             {%- endif -%}
 
           {%- when 'usp' -%}
@@ -164,6 +221,16 @@
   <script type="application/json" data-product-json>{{ product | json }}</script>
 </section>
 
+<div class="sticky-cart" data-sticky-cart>
+  <div class="sticky-cart__info">
+    <p class="sticky-cart__title">{{ product.title }}</p>
+    <p class="sticky-cart__price" data-sticky-price>{{ current_variant.price | money }}</p>
+  </div>
+  <button type="button" class="btn" data-sticky-add{% unless current_variant.available %} disabled{% endunless %}>
+    {% if current_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}
+  </button>
+</div>
+
 {% schema %}
 {
   "name": "Product",
@@ -180,8 +247,21 @@
       ]
     },
     { "type": "rating", "name": "Rating", "settings": [
-      { "type": "paragraph", "content": "Shows a star rating if the product has reviews (e.g. via Judge.me or Shopify Product Reviews)." }
+      { "type": "paragraph", "content": "Shows a star rating (and links to #reviews) if the product has reviews (e.g. via Judge.me or Shopify Product Reviews)." }
     ]},
+    { "type": "availability", "name": "Availability" },
+    { "type": "payment_icons", "name": "Payment icons" },
+    {
+      "type": "accessories",
+      "name": "Recommended accessories",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Rekommenderade tillbehör" },
+        { "type": "product", "id": "product_1", "label": "Product 1" },
+        { "type": "product", "id": "product_2", "label": "Product 2" },
+        { "type": "product", "id": "product_3", "label": "Product 3" },
+        { "type": "product", "id": "product_4", "label": "Product 4" }
+      ]
+    },
     { "type": "price", "name": "Price" },
     { "type": "volume_pricing", "name": "Volume pricing (B2B)", "settings": [
       { "type": "paragraph", "content": "Shows quantity price breaks for company (B2B) customers who have volume pricing set up on this product. Invisible to regular retail customers." }
@@ -196,6 +276,13 @@
       ]
     },
     { "type": "description", "name": "Description" },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "url", "id": "video_url", "label": "YouTube or Vimeo embed URL", "info": "Use the embed link, e.g. https://www.youtube.com/embed/VIDEO_ID" }
+      ]
+    },
     {
       "type": "usp",
       "name": "Trust point",
