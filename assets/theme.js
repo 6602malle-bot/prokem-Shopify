@@ -116,7 +116,14 @@
     // Gallery
     var slides = $$('[data-media]', wrap), thumbs = $$('[data-thumb]', wrap);
     function show(id) {
-      slides.forEach(function (s) { s.classList.toggle('is-active', s.dataset.media === String(id)); });
+      slides.forEach(function (s) {
+        var active = s.dataset.media === String(id);
+        s.classList.toggle('is-active', active);
+        if (!active) {
+          var v = s.querySelector('video'); if (v) v.pause();
+          var f = s.querySelector('iframe'); if (f) f.src = f.src; // reset stops YouTube/Vimeo playback
+        }
+      });
       thumbs.forEach(function (t) { t.setAttribute('aria-current', t.dataset.thumb === String(id) ? 'true' : 'false'); });
     }
     thumbs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.thumb); }); });
@@ -266,6 +273,18 @@
       btn.addEventListener('click', function () {
         var expanded = wrap.classList.toggle('is-expanded');
         btn.textContent = expanded ? wrap.dataset.lessText : wrap.dataset.moreText;
+      });
+    });
+    $$('[data-scroll-to]', root).forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = link.getAttribute('href');
+        var target = id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+        if (!target) return;
+        e.preventDefault();
+        target.classList.add('is-expanded');
+        var toggleBtn = $('[data-readmore-btn]', target);
+        if (toggleBtn) toggleBtn.textContent = target.dataset.lessText;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }

@@ -11,8 +11,23 @@
   <div class="gallery" data-gallery>
     <div class="gallery__main">
       {%- for media in product.media -%}
-        <div class="gallery__slide{% if media.id == current_variant.featured_media.id or forloop.first and current_variant.featured_media == blank %} is-active{% endif %}" data-media="{{ media.id }}">
-          {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+        {%- liquid
+          assign loading = 'lazy'
+          if forloop.first
+            assign loading = 'eager'
+          endif
+        -%}
+        <div class="gallery__slide{% if media.media_type != 'image' %} gallery__slide--media{% endif %}{% if media.id == current_variant.featured_media.id or forloop.first and current_variant.featured_media == blank %} is-active{% endif %}" data-media="{{ media.id }}">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              {{ media.preview_image | image_url: width: 1400 | image_tag: loading: loading, widths: '600, 900, 1200, 1400', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+            {%- when 'video', 'external_video' -%}
+              {{ media | media_tag: image_size: '1400x' }}
+            {%- when 'model' -%}
+              {{ media | media_tag: image_size: '1400x' }}
+            {%- else -%}
+              {{ media.preview_image | image_url: width: 1400 | image_tag: loading: loading, alt: media.alt | default: product.title }}
+          {%- endcase -%}
         </div>
       {%- else -%}
         <div class="gallery__slide is-active">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
@@ -22,8 +37,9 @@
       <ul class="gallery__thumbs">
         {%- for media in product.media -%}
           <li>
-            <button type="button" class="gallery__thumb" data-thumb="{{ media.id }}" aria-label="{{ 'products.show_image' | t: n: forloop.index }}">
+            <button type="button" class="gallery__thumb{% if media.media_type != 'image' %} gallery__thumb--media{% endif %}" data-thumb="{{ media.id }}" aria-label="{{ 'products.show_image' | t: n: forloop.index }}">
               {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '80px', alt: '' }}
+              {%- if media.media_type != 'image' -%}<span class="gallery__thumb-play" aria-hidden="true">▶</span>{%- endif -%}
             </button>
           </li>
         {%- endfor -%}
@@ -110,6 +126,14 @@
               </div>
             {%- endif -%}
 
+          {%- when 'short_description' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="product__short-desc rte" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+                <a href="#product-information" class="product__short-desc-link" data-scroll-to>{{ 'products.read_more' | t }}</a>
+              </div>
+            {%- endif -%}
+
           {%- when 'price' -%}
             <div class="product__price" data-price {{ block.shopify_attributes }}>
               <span class="price__current" data-price-current>{{ current_variant.price | money }}</span>
@@ -188,7 +212,7 @@
 
           {%- when 'description' -%}
             {%- if product.description != blank -%}
-              <div class="product__desc-wrap" data-readmore data-more-text="{{ 'products.read_more' | t | escape }}" data-less-text="{{ 'products.read_less' | t | escape }}" {{ block.shopify_attributes }}>
+              <div class="product__desc-wrap" id="product-information" data-readmore data-more-text="{{ 'products.read_more' | t | escape }}" data-less-text="{{ 'products.read_less' | t | escape }}" {{ block.shopify_attributes }}>
                 <div class="product__desc rte">{{ product.description }}</div>
                 <button type="button" class="product__desc-toggle" data-readmore-btn>{{ 'products.read_more' | t }}</button>
               </div>
@@ -204,9 +228,28 @@
             {%- endif -%}
 
           {%- when 'usp' -%}
-            <ul class="product__usps product__usps--single" {{ block.shopify_attributes }}>
-              <li>{% render 'icon', name: block.settings.icon, size: 22 %}<span>{{ block.settings.text }}</span></li>
-            </ul>
+            {%- liquid
+              assign prev_is_usp = false
+              assign next_is_usp = false
+              assign last_index = section.blocks.size | minus: 1
+              assign prev_index = forloop.index0 | minus: 1
+              assign next_index = forloop.index0 | plus: 1
+              if forloop.index0 > 0
+                assign prev_block = section.blocks[prev_index]
+                if prev_block.type == 'usp'
+                  assign prev_is_usp = true
+                endif
+              endif
+              if forloop.index0 < last_index
+                assign next_block = section.blocks[next_index]
+                if next_block.type == 'usp'
+                  assign next_is_usp = true
+                endif
+              endif
+            -%}
+            {%- unless prev_is_usp -%}<ul class="product__usps">{%- endunless -%}
+              <li {{ block.shopify_attributes }}>{% render 'icon', name: block.settings.icon, size: 22 %}<span>{{ block.settings.text }}</span></li>
+            {%- unless next_is_usp -%}</ul>{%- endunless -%}
 
           {%- when 'sku' -%}
             {%- if current_variant.sku != blank -%}
@@ -260,6 +303,13 @@
         { "type": "product", "id": "product_2", "label": "Product 2" },
         { "type": "product", "id": "product_3", "label": "Product 3" },
         { "type": "product", "id": "product_4", "label": "Product 4" }
+      ]
+    },
+    {
+      "type": "short_description",
+      "name": "Short description",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "info": "A short teaser shown near the top, with a \"Read more\" link that jumps down to the full Description block.", "default": "<p>En kort mening som sammanfattar produkten.</p>" }
       ]
     },
     { "type": "price", "name": "Price" },
