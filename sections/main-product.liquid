@@ -6,9 +6,9 @@
     assign on_sale = true
   endif
 -%}
-<section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}">
+<section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}" style="--info-width: {{ section.settings.info_width | default: 42 }}%;">
   {% render 'breadcrumbs' %}
-  <div class="gallery" data-gallery>
+  <div class="gallery{% if product.media.size > 1 %} gallery--has-thumbs{% endif %}" data-gallery>
     <div class="gallery__main">
       {%- for media in product.media -%}
         {%- liquid
@@ -277,6 +277,9 @@
 {% schema %}
 {
   "name": "Product",
+  "settings": [
+    { "type": "range", "id": "info_width", "label": "Right column width on desktop", "info": "The gallery bleeds full-width on desktop; this sets how wide the info column on the right is.", "min": 30, "max": 50, "step": 1, "unit": "%", "default": 42 }
+  ],
   "blocks": [
     { "type": "@app" },
     { "type": "vendor", "name": "Vendor" },

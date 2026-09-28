@@ -297,9 +297,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   /* Cancel the page-width constraint on desktop only, so the gallery can bleed edge-to-edge
      while the breadcrumb and info column keep sensible insets of their own. */
   .product.page-width { max-width: none; margin: 0; padding: 0; }
-  .product { grid-template-columns: 1fr 30%; gap: 0; padding-top: 0; align-items: start; }
+  .product { grid-template-columns: 1fr var(--info-width, 42%); gap: 0; padding-top: 0; align-items: start; }
   .product .breadcrumb { padding-left: 40px; padding-right: 40px; }
   .product .gallery { padding: 0; }
+  .product .gallery--has-thumbs { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding-left: 16px; align-items: start; }
+  .product .gallery--has-thumbs .gallery__main { grid-column: 2; grid-row: 1; }
+  .product .gallery--has-thumbs .gallery__thumbs { grid-column: 1; grid-row: 1; flex-direction: column; margin: 0; height: 0; min-height: 100%; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; }
+  .product .gallery--has-thumbs .gallery__thumb { width: 72px; height: 72px; flex: none; }
   .product__info { position: sticky; top: 100px; align-self: start; padding: 48px 48px 48px 40px; }
 }
 @media (min-width: 1400px) {
