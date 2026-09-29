@@ -130,9 +130,9 @@
       ],
       "settings": {
         "heading": "Utvalda kategorier",
-        "layout": "grid",
-        "style": "card",
-        "columns": 4,
+        "layout": "carousel",
+        "style": "round",
+        "columns": 6,
         "columns_mobile": 2
       }
     },
