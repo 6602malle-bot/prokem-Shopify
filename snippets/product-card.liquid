@@ -58,6 +58,16 @@
         {%- endif -%}
       {%- endif -%}
     </div>
+    {%- if settings.show_card_description -%}
+      {%- liquid
+        assign short_desc = product.metafields.custom.short_description.value
+        if short_desc == blank
+          assign short_desc = product.description | strip_html | strip_newlines
+        endif
+        assign short_desc = short_desc | strip_html | truncate: settings.card_description_length
+      -%}
+      {%- if short_desc != blank -%}<p class="card__desc">{{ short_desc }}</p>{%- endif -%}
+    {%- endif -%}
   </div>
 
   {%- if quick_add and product.available and product.has_only_default_variant == false -%}

@@ -298,7 +298,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
      while the breadcrumb and info column keep sensible insets of their own. */
   .product.page-width { max-width: none; margin: 0; padding: 0; }
   .product { grid-template-columns: 1fr var(--info-width, 42%); gap: 0; padding-top: 0; align-items: start; }
-  .product .breadcrumb { padding-left: 40px; padding-right: 40px; }
+  .product .breadcrumb { padding-left: 40px; padding-right: 40px; padding-bottom: 20px; }
   .product .gallery { padding: 0; }
   .product .gallery--has-thumbs { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding-left: 16px; align-items: start; }
   .product .gallery--has-thumbs .gallery__main { grid-column: 2; grid-row: 1; }
@@ -387,6 +387,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .chip--clear { background: none; text-decoration: underline; }
 @media (min-width: 990px) {
   .collection__layout { grid-template-columns: 260px minmax(0, 1fr); align-items: start; }
+  .collection__layout--no-filters { grid-template-columns: minmax(0, 1fr); }
   .collection__toolbar { grid-column: 1 / -1; }
   .filters, .filters.is-open { display: block; }
   .collection__filter-btn { display: none; }
@@ -609,3 +610,6 @@ a.product__rating:hover { color: var(--c-text); text-decoration: underline; }
   .js .card:nth-child(4), .js .tile:nth-child(4), .js .guide:nth-child(4), .js .feature:nth-child(4) { transition-delay: .15s; }
   .js .is-visible { opacity: 1 !important; transform: none !important; }
 }
+
+/* Product card short description */
+.card__desc { margin: 6px 0 0; color: var(--c-muted); font-size: .85rem; line-height: 1.4; }

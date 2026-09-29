@@ -1,7 +1,7 @@
 {%- liquid
   assign sort_by = collection.sort_by | default: collection.default_sort_by
   assign has_filters = false
-  if collection.filters.size > 0
+  if collection.filters.size > 0 and section.settings.show_filters
     assign has_filters = true
   endif
 -%}
@@ -15,7 +15,7 @@
   </header>
 
   {%- paginate collection.products by section.settings.products_per_page -%}
-    <form method="get" class="collection__layout" data-filters>
+    <form method="get" class="collection__layout{% unless has_filters %} collection__layout--no-filters{% endunless %}" data-filters>
       <div class="collection__toolbar">
         {%- if has_filters -%}
           <button type="button" class="btn btn--ghost btn--sm collection__filter-btn" data-filter-toggle>
@@ -107,6 +107,7 @@
   "name": "Collection page",
   "settings": [
     { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
+    { "type": "checkbox", "id": "show_filters", "label": "Show filters", "info": "Turn off to hide the filter sidebar/button on this collection page. Sorting stays available.", "default": true },
     { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },
     { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 5, "step": 1, "default": 3 }
   ],
