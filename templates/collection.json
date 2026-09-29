@@ -19,7 +19,7 @@
             "image_mobile": "{{ collection.image }}",
             "heading": "{{ collection.title }}",
             "text": "{{ collection.metafields.custom.promo.value }}",
-            "button_label": "Beställ",
+            "button_label": "",
             "button_link": "{{ collection.url }}",
             "position": "bottom",
             "align": "left"
