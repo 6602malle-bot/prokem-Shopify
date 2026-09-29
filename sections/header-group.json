@@ -46,6 +46,21 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_promo_C83Jmi": {
+          "type": "mega_promo",
+          "settings": {
+            "menu_item": "Veckans vara",
+            "image": "shopify://shop_images/Sladdlos_Vinkelslip_800W_125_mm_4Ah_Batteri_50_Kapskivor.png",
+            "heading": "Sladdlös Vinkelslip",
+            "button_label": "Beställ/Läs mer",
+            "link": "shopify://products/sladdlos-vinkelslip125-mm-40-ah-batteri-50st-procut-125-x-10-x-2223mm-kapskivor"
+          }
+        }
+      },
+      "block_order": [
+        "mega_promo_C83Jmi"
+      ],
       "settings": {
         "logo": "shopify://shop_images/logo-w.png",
         "logo_width": 300,
