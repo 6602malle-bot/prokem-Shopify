@@ -53,20 +53,12 @@
     "categories": {
       "type": "collection-tiles",
       "blocks": {
-        "t1": {
-          "type": "tile",
-          "settings": {
-            "collection": "",
-            "title": "Alkalisk avfettning",
-            "link": ""
-          }
-        },
         "t2": {
           "type": "tile",
           "settings": {
-            "collection": "",
-            "title": "Exteriör",
-            "link": ""
+            "collection": "avgassystem",
+            "title": "",
+            "link": "{{ block.settings.collection.url }}"
           }
         },
         "t3": {
@@ -119,7 +111,6 @@
         }
       },
       "block_order": [
-        "t1",
         "t2",
         "t3",
         "t4",
