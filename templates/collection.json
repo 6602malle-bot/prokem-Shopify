@@ -17,9 +17,52 @@
         "products_per_page": 24,
         "columns": 4
       }
+    },
+    "hero_slideshow_JzKVYL": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_LwimKb": {
+          "type": "slide",
+          "settings": {
+            "image": "{{ collection.image }}",
+            "image_mobile": "{{ collection.image }}",
+            "heading": "{{ collection.title }}",
+            "text": "{{ collection.metafields.custom.promo.value }}",
+            "button_label": "Beställ",
+            "button_link": "{{ collection.url }}",
+            "position": "bottom",
+            "align": "left"
+          }
+        },
+        "slide_8gtmck": {
+          "type": "slide",
+          "settings": {
+            "heading": "Hösttvättpaket – spara 10%",
+            "text": "",
+            "button_label": "Till paketen",
+            "button_link": "",
+            "position": "center",
+            "align": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slide_LwimKb",
+        "slide_8gtmck"
+      ],
+      "name": "Hero slideshow",
+      "settings": {
+        "label": "",
+        "height": "medium",
+        "overlay": 35,
+        "behind_header": false,
+        "autoplay": true,
+        "interval": 6
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hero_slideshow_JzKVYL"
   ]
 }
