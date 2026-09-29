@@ -42,8 +42,9 @@
         "contact"
       ],
       "settings": {
-        "app_text": "Exklusiva tävlingar, spel och nyheter – ladda ner vår app",
-        "app_button": "Hämta",
+        "logo": "shopify://shop_images/logo-w.png",
+        "app_text": "Vi erbjuder ett brett sortiment av produkter och lösningar för att säkerställa optimal funktion, prestanda och livslängd på fordon och maskiner.",
+        "app_button": "",
         "app_link": "",
         "motto": "Rätt produkt på rätt plats ®"
       }
