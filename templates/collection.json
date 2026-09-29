@@ -9,15 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-collection",
-      "settings": {
-        "show_description": false,
-        "show_filters": false,
-        "products_per_page": 24,
-        "columns": 4
-      }
-    },
     "hero_slideshow_JzKVYL": {
       "type": "hero-slideshow",
       "blocks": {
@@ -59,10 +50,19 @@
         "autoplay": true,
         "interval": 6
       }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_description": false,
+        "show_filters": false,
+        "products_per_page": 24,
+        "columns": 4
+      }
     }
   },
   "order": [
-    "main",
-    "hero_slideshow_JzKVYL"
+    "hero_slideshow_JzKVYL",
+    "main"
   ]
 }
