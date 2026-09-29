@@ -79,6 +79,7 @@
         },
         "description": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "sku": {
@@ -107,6 +108,14 @@
         "info_width": 42
       }
     },
+    "seo_text_JFTtdK": {
+      "type": "seo-text",
+      "name": "Text block",
+      "settings": {
+        "heading": "",
+        "text": "{{ product.description }}"
+      }
+    },
     "related": {
       "type": "product-recommendations",
       "settings": {
@@ -122,6 +131,7 @@
   },
   "order": [
     "main",
+    "seo_text_JFTtdK",
     "related"
   ]
 }
