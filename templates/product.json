@@ -112,7 +112,7 @@
       "type": "seo-text",
       "name": "Text block",
       "settings": {
-        "heading": "",
+        "heading": "Beskrivning",
         "text": "{{ product.description }}"
       }
     },
