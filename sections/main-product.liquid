@@ -9,6 +9,11 @@
 <section class="page-width product" data-product data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-text="{{ 'general.sold_out' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}" style="--info-width: {{ section.settings.info_width | default: 42 }}%;">
   {% render 'breadcrumbs' %}
   <div class="gallery{% if product.media.size > 1 %} gallery--has-thumbs{% endif %}" data-gallery>
+    {%- assign custom_badge = product.metafields.custom.badge_text.value -%}
+    {%- if custom_badge != blank -%}
+      {%- assign custom_badge_color = product.metafields.custom.badge_color.value -%}
+      <span class="badge badge--custom gallery__badge"{% if custom_badge_color != blank %} style="background: {{ custom_badge_color }};"{% endif %}>{{ custom_badge }}</span>
+    {%- endif -%}
     <div class="gallery__main">
       {%- for media in product.media -%}
         {%- liquid
@@ -212,10 +217,7 @@
 
           {%- when 'description' -%}
             {%- if product.description != blank -%}
-              <div class="product__desc-wrap" id="product-information" data-readmore data-more-text="{{ 'products.read_more' | t | escape }}" data-less-text="{{ 'products.read_less' | t | escape }}" {{ block.shopify_attributes }}>
-                <div class="product__desc rte">{{ product.description }}</div>
-                <button type="button" class="product__desc-toggle" data-readmore-btn>{{ 'products.read_more' | t }}</button>
-              </div>
+              <div class="product__desc rte" id="product-information" {{ block.shopify_attributes }}>{{ product.description }}</div>
             {%- endif -%}
 
           {%- when 'video' -%}

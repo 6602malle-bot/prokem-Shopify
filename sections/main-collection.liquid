@@ -8,7 +8,7 @@
 <section class="page-width collection">
   {% render 'breadcrumbs' %}
   <header class="collection__head">
-    <h1 class="collection__title">{{ collection.title }}</h1>
+    {%- if section.settings.show_title -%}<h1 class="collection__title">{{ collection.title }}</h1>{%- endif -%}
     {%- if collection.description != blank and section.settings.show_description -%}
       <div class="collection__desc rte">{{ collection.description }}</div>
     {%- endif -%}
@@ -106,6 +106,7 @@
 {
   "name": "Collection page",
   "settings": [
+    { "type": "checkbox", "id": "show_title", "label": "Show title", "default": true },
     { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
     { "type": "checkbox", "id": "show_filters", "label": "Show filters", "info": "Turn off to hide the filter sidebar/button on this collection page. Sorting stays available.", "default": true },
     { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },

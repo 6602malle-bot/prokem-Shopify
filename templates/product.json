@@ -1,17 +1,9 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
+<<<<<<< Updated upstream
         "title": {
           "type": "title",
           "settings": {}
@@ -87,27 +79,26 @@
           "type": "sku",
           "settings": {}
         }
+=======
+        "title": { "type": "title", "settings": {} },
+        "rating": { "type": "rating", "settings": {} },
+        "short_description": { "type": "short_description", "settings": {} },
+        "price": { "type": "price", "settings": {} },
+        "volume_pricing": { "type": "volume_pricing", "settings": {} },
+        "variant_picker": { "type": "variant_picker", "settings": {} },
+        "availability": { "type": "availability", "settings": {} },
+        "quantity": { "type": "quantity", "settings": {} },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
+        "payment_icons": { "type": "payment_icons", "settings": {} },
+        "u1": { "type": "usp", "settings": { "icon": "clock", "text": "1–2 dagars leveranstid" } },
+        "u2": { "type": "usp", "settings": { "icon": "truck", "text": "Fraktfritt över 1 200 kr" } },
+        "u3": { "type": "usp", "settings": { "icon": "tag", "text": "Dekaler ingår i varje order" } },
+        "description": { "type": "description", "settings": {} },
+        "sku": { "type": "sku", "settings": {} }
+>>>>>>> Stashed changes
       },
-      "block_order": [
-        "title",
-        "rating",
-        "short_description",
-        "price",
-        "volume_pricing",
-        "variant_picker",
-        "availability",
-        "quantity",
-        "buy_buttons",
-        "payment_icons",
-        "u1",
-        "u2",
-        "u3",
-        "description",
-        "sku"
-      ],
-      "settings": {
-        "info_width": 42
-      }
+      "block_order": ["title", "rating", "short_description", "price", "volume_pricing", "variant_picker", "availability", "quantity", "buy_buttons", "payment_icons", "u1", "u2", "u3", "description", "sku"],
+      "settings": { "info_width": 42 }
     },
     "seo_text_JFTtdK": {
       "type": "seo-text",
@@ -119,20 +110,16 @@
     },
     "related": {
       "type": "product-recommendations",
-      "settings": {
-        "heading": "Passar bra ihop med",
-        "layout": "carousel",
-        "limit": 8,
-        "per_row": 4,
-        "show_quick_add": true,
-        "show_rating": true,
-        "show_discount": true
-      }
+      "settings": { "heading": "Passar bra ihop med", "layout": "carousel", "limit": 8, "per_row": 4, "show_quick_add": true, "show_rating": true, "show_discount": true }
     }
   },
+<<<<<<< Updated upstream
   "order": [
     "main",
     "seo_text_JFTtdK",
     "related"
   ]
+=======
+  "order": ["main", "related"]
+>>>>>>> Stashed changes
 }

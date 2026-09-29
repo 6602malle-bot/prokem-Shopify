@@ -24,6 +24,11 @@
       {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
     {%- endif -%}
     <span class="card__badges">
+      {%- assign custom_badge = product.metafields.custom.badge_text.value -%}
+      {%- if custom_badge != blank -%}
+        {%- assign custom_badge_color = product.metafields.custom.badge_color.value -%}
+        <span class="badge badge--custom"{% if custom_badge_color != blank %} style="background: {{ custom_badge_color }};"{% endif %}>{{ custom_badge }}</span>
+      {%- endif -%}
       {%- unless product.available -%}<span class="badge">{{ 'general.sold_out' | t }}</span>{%- endunless -%}
       {%- if on_sale -%}
         {%- if discount_badge and pct > 0 -%}
