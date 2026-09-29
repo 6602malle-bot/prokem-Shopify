@@ -64,9 +64,9 @@
         "t3": {
           "type": "tile",
           "settings": {
-            "collection": "",
-            "title": "Interiör",
-            "link": ""
+            "collection": "additiv-tillsatser",
+            "title": "",
+            "link": "{{ block.settings.collection.url }}"
           }
         },
         "t4": {
