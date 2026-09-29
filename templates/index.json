@@ -143,6 +143,7 @@
         "c1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Lokithor_J402_PRO_3500A_Startbooster_12V_Prokem.png",
             "badge": "Nyhet!",
             "title": "Storsäljande allrengöring – nu även i 5-liter",
             "text": "",
@@ -153,6 +154,7 @@
         "c2": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Easy_Off_Socket_10_19_mm_Bultutdragare_11_delar.png",
             "badge": "Nyhet!",
             "title": "Kombinerad kallavfettning och flygrostlösare",
             "text": "",
@@ -305,10 +307,10 @@
     "spotlight": {
       "type": "featured-product",
       "settings": {
-        "product": "",
+        "product": "allround-verktygssats-105-delars-pris-fran-1317",
         "badge": "",
         "title": "",
-        "tagline": "May the gloss be with you ®",
+        "tagline": "Veckans vara!",
         "text": "",
         "button_label": "Köp nu"
       }
