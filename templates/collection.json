@@ -42,6 +42,7 @@
     "main": {
       "type": "main-collection",
       "settings": {
+        "show_title": false,
         "show_description": false,
         "show_filters": false,
         "products_per_page": 24,
@@ -53,7 +54,11 @@
       "name": "Text block",
       "settings": {
         "heading": "{{ collection.title }}",
-        "text": "{{ collection.description }}"
+        "text": "{{ collection.description }}",
+        "bg": "standard",
+        "custom_bg": "#f4f4f2",
+        "custom_text_color": "#161616",
+        "collapse": false
       }
     }
   },
