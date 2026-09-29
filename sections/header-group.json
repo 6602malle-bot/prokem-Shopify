@@ -49,8 +49,8 @@
       "settings": {
         "logo_width": 140,
         "menu": "main-menu",
-        "transparent_header": false,
-        "transparent_home_only": true,
+        "transparent_header": true,
+        "transparent_home_only": false,
         "transparent_text_color": "#ffffff"
       }
     }
