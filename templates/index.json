@@ -12,6 +12,18 @@
     "hero": {
       "type": "hero-slideshow",
       "blocks": {
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/campervan-under-morning-sunrise.jpg",
+            "heading": "Husbil och Campervan",
+            "text": "Vi erbjuder fullt sortiment av Litiumbatterier, AGM batteri, Fritidsbatteri, Startboosters, Solpaneler, Kompletta Solpanelspaket, Laddare, Inverters, Victron-system, mm",
+            "button_label": "Beställ",
+            "button_link": "",
+            "position": "bottom",
+            "align": "left"
+          }
+        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -19,17 +31,6 @@
             "heading": "Hösttvättpaket – spara 10%",
             "text": "",
             "button_label": "Till paketen",
-            "button_link": "",
-            "position": "center",
-            "align": "left"
-          }
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {
-            "heading": "Mångsidig allrengöring i flera dofter",
-            "text": "",
-            "button_label": "Läs mer",
             "button_link": "",
             "position": "center",
             "align": "left"
@@ -48,8 +49,8 @@
         }
       },
       "block_order": [
-        "slide_1",
         "slide_2",
+        "slide_1",
         "slide_3"
       ],
       "settings": {
