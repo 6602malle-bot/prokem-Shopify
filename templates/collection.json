@@ -24,22 +24,10 @@
             "position": "bottom",
             "align": "left"
           }
-        },
-        "slide_8gtmck": {
-          "type": "slide",
-          "settings": {
-            "heading": "Hösttvättpaket – spara 10%",
-            "text": "",
-            "button_label": "Till paketen",
-            "button_link": "",
-            "position": "center",
-            "align": "left"
-          }
         }
       },
       "block_order": [
-        "slide_LwimKb",
-        "slide_8gtmck"
+        "slide_LwimKb"
       ],
       "name": "Hero slideshow",
       "settings": {
@@ -59,10 +47,19 @@
         "products_per_page": 24,
         "columns": 4
       }
+    },
+    "seo_text_L3kJHM": {
+      "type": "seo-text",
+      "name": "Text block",
+      "settings": {
+        "heading": "{{ collection.title }}",
+        "text": "{{ collection.description }}"
+      }
     }
   },
   "order": [
     "hero_slideshow_JzKVYL",
-    "main"
+    "main",
+    "seo_text_L3kJHM"
   ]
 }
