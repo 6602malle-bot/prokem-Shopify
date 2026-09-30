@@ -11,5 +11,10 @@
   "current": {
     "card_description_length": 200,
     "content_for_index": []
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".product__short-desc-link{display:none;}"
+    ]
   }
 }
