@@ -1,0 +1,56 @@
+<section class="section section--tight">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section__head"><h2 class="section__title">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+    <div class="promo-grid" style="--cols-d: {{ section.settings.columns }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <div class="promo promo--app" {{ block.shopify_attributes }}>{% render block %}</div>
+        {%- else -%}
+        <a class="promo" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 900, 1200', sizes: '(min-width: 750px) 50vw, 100vw', alt: '', class: 'promo__img' }}
+          {%- else -%}
+            <span class="promo__img promo__img--empty">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}</span>
+          {%- endif -%}
+          <span class="promo__body">
+            {%- if block.settings.badge != blank -%}<span class="badge badge--accent">{{ block.settings.badge }}</span>{%- endif -%}
+            <span class="promo__title">{{ block.settings.title }}</span>
+            {%- if block.settings.text != blank -%}<span class="promo__text">{{ block.settings.text }}</span>{%- endif -%}
+            {%- if block.settings.button_label != blank -%}<span class="btn btn--sm">{{ block.settings.button_label }}</span>{%- endif -%}
+          </span>
+        </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promo cards",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 1, "max": 3, "step": 1, "default": 2 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "badge", "label": "Badge", "default": "Nyhet" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Ny produkt i sortimentet" },
+        { "type": "text", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Till produkten" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "presets": [
+    { "name": "Promo cards", "blocks": [{ "type": "card" }, { "type": "card" }] }
+  ]
+}
+{% endschema %}

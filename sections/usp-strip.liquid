@@ -1,0 +1,44 @@
+<section class="usps">
+  <div class="page-width">
+    <ul class="usps__list" style="--cols-d: {{ section.blocks.size }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <li class="usps__item" {{ block.shopify_attributes }}>{% render block %}</li>
+        {%- else -%}
+          <li class="usps__item" {{ block.shopify_attributes }}>
+            {% render 'icon', name: block.settings.icon, size: 28 %}
+            <span>{{ block.settings.text }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "USP strip",
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+          { "value": "truck", "label": "Truck" },
+          { "value": "clock", "label": "Clock" },
+          { "value": "star", "label": "Star" },
+          { "value": "tag", "label": "Tag" },
+          { "value": "leaf", "label": "Leaf" },
+          { "value": "shield", "label": "Shield" }
+        ]},
+        { "type": "text", "id": "text", "label": "Text", "default": "Fraktfritt över 1 200 kr" }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "presets": [
+    { "name": "USP strip", "blocks": [{ "type": "usp" }, { "type": "usp", "settings": { "icon": "clock", "text": "1–2 dagars leveranstid" } }, { "type": "usp", "settings": { "icon": "star", "text": "4,9/5 i kundomdömen" } }, { "type": "usp", "settings": { "icon": "tag", "text": "Dekaler ingår i varje order" } }] }
+  ]
+}
+{% endschema %}

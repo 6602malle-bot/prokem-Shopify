@@ -1,0 +1,18 @@
+{%- comment -%} Renders one mini upsell row for the "Recommended accessories" product block. Expects: acc (product) {%- endcomment -%}
+{%- assign acc_variant = acc.selected_or_first_available_variant -%}
+<li class="accessories__item">
+  <a class="accessories__media" href="{{ acc.url }}" tabindex="-1" aria-hidden="true">
+    {%- if acc.featured_image -%}
+      {{ acc.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', width: 64, height: 64, alt: acc.title }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+  </a>
+  <a class="accessories__title-link" href="{{ acc.url }}">{{ acc.title }}</a>
+  <span class="accessories__price">{{ acc.price | money }}</span>
+  {%- if acc.available and acc.has_only_default_variant -%}
+    <button type="button" class="accessories__add" data-quick-add data-variant-id="{{ acc_variant.id }}" data-added-text="{{ 'products.added' | t | escape }}" data-error-text="{{ 'products.error' | t | escape }}" data-adding-text="{{ 'products.adding' | t | escape }}">{{ 'products.quick_add' | t }}</button>
+  {%- else -%}
+    <a class="accessories__add accessories__add--link" href="{{ acc.url }}">{{ 'products.quick_add' | t }}</a>
+  {%- endif -%}
+</li>

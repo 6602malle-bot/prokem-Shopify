@@ -1,0 +1,26 @@
+{
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu_1": { "type": "menu", "settings": { "heading": "Sortiment", "menu": "main-menu" } },
+        "menu_2": { "type": "menu", "settings": { "heading": "Information", "menu": "footer" } },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Kontakt",
+            "text": "<p>info@example.com<br>08-00 00 00</p>"
+          }
+        }
+      },
+      "block_order": ["menu_1", "menu_2", "contact"],
+      "settings": {
+        "app_text": "Exklusiva tävlingar, spel och nyheter – ladda ner vår app",
+        "motto": "May the gloss be with you ®"
+      }
+    }
+  },
+  "order": ["footer"]
+}

@@ -1,0 +1,11 @@
+<article class="guide">
+  <a class="guide__media" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
+    {%- if article.image -%}
+      {{ article.image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320, 480, 640', sizes: '(min-width: 990px) 22vw, 46vw', alt: article.image.alt | default: article.title }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+  </a>
+  <h3 class="guide__title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+  {%- if show_excerpt -%}<p class="guide__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>{%- endif -%}
+</article>

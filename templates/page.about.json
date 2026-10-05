@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "banner": {
+      "type": "hero-slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "heading": "May the gloss be with you ®",
+            "text": "Bilvårdsprodukter utvecklade och testade av oss som älskar rena bilar.",
+            "position": "center",
+            "align": "left"
+          }
+        }
+      },
+      "block_order": ["slide_1"],
+      "settings": { "height": "small", "autoplay": false, "overlay": 40, "label": "Om oss" }
+    },
+    "intro": {
+      "type": "seo-text",
+      "settings": {
+        "heading": "Om oss",
+        "text": "<p>Berätta kort vilka ni är, vad ni brinner för och vad som gör era produkter annorlunda. Det här stycket fungerar bra som en kort introduktion innan besökaren scrollar vidare.</p>"
+      }
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "image_position": "left",
+        "kicker": "Vår historia",
+        "heading": "Startade i ett garage – för att bilvård förtjänar bättre",
+        "text": "<p>Berätta er historia här: varför ni startade, vad ni brinner för och vad som gör er annorlunda. Ju mer personligt, desto bättre.</p>",
+        "button_label": "Se våra produkter",
+        "button_link": "/collections/all",
+        "style": "standard"
+      }
+    },
+    "mission": {
+      "type": "image-with-text",
+      "settings": {
+        "image_position": "right",
+        "kicker": "Vårt mål",
+        "heading": "Enkelt att göra ett riktigt bra jobb",
+        "text": "<p>Beskriv er mission: vilket problem löser ni för kunden, och varför spelar det roll?</p>",
+        "style": "alt"
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "10+", "label": "år i branschen" } },
+        "s2": { "type": "stat", "settings": { "number": "50 000+", "label": "nöjda kunder" } },
+        "s3": { "type": "stat", "settings": { "number": "4,9/5", "label": "i kundbetyg" } },
+        "s4": { "type": "stat", "settings": { "number": "100%", "label": "testat på egna bilar" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": { "heading": "" }
+    },
+    "why": {
+      "type": "feature-columns",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "shield", "title": "Kvalitetstestat", "text": "Alla produkter utvecklas och testas av oss innan de når butikshyllan." } },
+        "f2": { "type": "feature", "settings": { "icon": "leaf", "title": "Skonsamt för miljön", "text": "Vi jobbar löpande med att göra våra formler mer hållbara." } },
+        "f3": { "type": "feature", "settings": { "icon": "truck", "title": "Snabb leverans", "text": "De flesta ordrar skickas inom 1–2 dagar." } }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": { "heading": "Varför välja oss", "columns": 3 }
+    },
+    "usps": {
+      "type": "usp-strip",
+      "blocks": {
+        "u1": { "type": "usp", "settings": { "icon": "clock", "text": "1–2 dagars leveranstid" } },
+        "u2": { "type": "usp", "settings": { "icon": "truck", "text": "Fraktfritt över 1 200 kr" } },
+        "u3": { "type": "usp", "settings": { "icon": "star", "text": "4,9/5 i kundomdömen" } }
+      },
+      "block_order": ["u1", "u2", "u3"],
+      "settings": {}
+    }
+  },
+  "order": ["banner", "intro", "story", "mission", "stats", "why", "usps"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Header group",
+  "type": "header",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "usp_1": { "type": "usp", "settings": { "text": "1–2 dagars leveranstid" } },
+        "usp_2": { "type": "usp", "settings": { "text": "Fraktfritt över 1 200 kr" } },
+        "usp_3": { "type": "usp", "settings": { "text": "Dekaler ingår i alla ordrar" } }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3"],
+      "settings": {}
+    },
+    "header": {
+      "type": "header",
+      "settings": { "menu": "main-menu", "logo_width": 140 }
+    }
+  },
+  "order": ["announcement", "header"]
+}

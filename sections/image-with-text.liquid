@@ -1,0 +1,49 @@
+{%- liquid
+  assign position = section.settings.image_position | default: 'left'
+-%}
+<section class="section imgtext{% if section.settings.style == 'alt' %} section--alt{% endif %}">
+  <div class="page-width imgtext__inner imgtext__inner--{{ position }}">
+    <div class="imgtext__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image.alt | default: section.settings.heading }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- endif -%}
+    </div>
+    <div class="imgtext__body">
+      {%- if section.settings.kicker != blank -%}<p class="imgtext__kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="imgtext__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="imgtext__text rte">{{ section.settings.text }}</div>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Recommended at least 1200 x 1200 px." },
+    { "type": "select", "id": "image_position", "label": "Image position on desktop", "default": "left", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "right", "label": "Right" }
+    ]},
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Vår historia" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Startade i ett garage – för att bilvård förtjänar bättre" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Berätta er historia här: varför ni startade, vad ni brinner för och vad som gör er annorlunda.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "style", "label": "Background", "default": "standard", "options": [
+      { "value": "standard", "label": "Standard" },
+      { "value": "alt", "label": "Alternate" }
+    ]}
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Image with text" }]
+}
+{% endschema %}

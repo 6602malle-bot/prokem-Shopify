@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title", "settings": {} },
+        "rating": { "type": "rating", "settings": {} },
+        "short_description": { "type": "short_description", "settings": {} },
+        "price": { "type": "price", "settings": {} },
+        "volume_pricing": { "type": "volume_pricing", "settings": {} },
+        "variant_picker": { "type": "variant_picker", "settings": {} },
+        "availability": { "type": "availability", "settings": {} },
+        "quantity": { "type": "quantity", "settings": {} },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
+        "payment_icons": { "type": "payment_icons", "settings": {} },
+        "u1": { "type": "usp", "settings": { "icon": "clock", "text": "1–2 dagars leveranstid" } },
+        "u2": { "type": "usp", "settings": { "icon": "truck", "text": "Fraktfritt över 1 200 kr" } },
+        "u3": { "type": "usp", "settings": { "icon": "tag", "text": "Dekaler ingår i varje order" } },
+        "description": { "type": "description", "settings": {} },
+        "sku": { "type": "sku", "settings": {} },
+        "collections": { "type": "collections", "settings": {} },
+        "tags": { "type": "tags", "settings": {} }
+      },
+      "block_order": ["title", "rating", "short_description", "price", "volume_pricing", "variant_picker", "availability", "quantity", "buy_buttons", "payment_icons", "u1", "u2", "u3", "description", "sku", "collections", "tags"],
+      "settings": { "info_width": 42 }
+    },
+    "recommended": {
+      "type": "product-carousel",
+      "settings": { "heading": "Rekommenderade produkter", "subheading": "", "layout": "carousel", "products_to_show": 10, "per_row": 4, "style": "light", "show_quick_add": true, "show_rating": true, "show_discount": true, "show_view_all": true }
+    },
+    "related": {
+      "type": "product-recommendations",
+      "settings": { "heading": "Relaterade produkter", "layout": "carousel", "limit": 8, "per_row": 4, "show_quick_add": true, "show_rating": true, "show_discount": true }
+    }
+  },
+  "order": ["main", "recommended", "related"]
+}
