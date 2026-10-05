@@ -53,39 +53,10 @@
         "transparent_home_only": false,
         "transparent_text_color": "#ffffff"
       }
-    },
-    "hero_slideshow_CQTApk": {
-      "type": "hero-slideshow",
-      "blocks": {
-        "slide_YBmYjn": {
-          "type": "slide",
-          "settings": {
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "button_link": "",
-            "position": "center",
-            "align": "left"
-          }
-        }
-      },
-      "block_order": [
-        "slide_YBmYjn"
-      ],
-      "name": "Hero slideshow",
-      "settings": {
-        "label": "",
-        "height": "medium",
-        "overlay": 35,
-        "behind_header": false,
-        "autoplay": true,
-        "interval": 6
-      }
     }
   },
   "order": [
     "announcement",
-    "header",
-    "hero_slideshow_CQTApk"
+    "header"
   ]
 }
